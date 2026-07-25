@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project — YuxuanWeng</title>
+    <meta name="description" content="Project detail — YuxuanWeng portfolio" />
+    <link rel="canonical" href="https://yuxuanweng.com/project.html" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("portfolio-theme");
+        document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+        var l = localStorage.getItem("portfolio-lang");
+        var lang = l === "cn" ? "cn" : "en";
+        document.documentElement.setAttribute("data-lang", lang);
+        document.documentElement.lang = lang === "cn" ? "zh-Hans" : "en";
+      })();
+    </script>
+  </head>
+  <body data-page="projects">
+    <div id="site-header"></div>
+    <main id="page-content"></main>
+    <script type="module" src="js/project.js"></script>
+  </body>
+</html>
