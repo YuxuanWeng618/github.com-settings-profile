@@ -10,7 +10,7 @@ export const site = {
   tagline: "Designer, Researcher",
   taglineCn: "设计师, 研究员",
   email: "CQWengyuxuan@outlook.com",
-  lastUpdate: "Jul, 2026",
+  lastUpdate: "Aug, 2026",
   googleScholar:
     "https://scholar.google.com/citations?view_op=list_works&hl=zh-TW&user=yqzwOIAAAAJ",
 };
@@ -474,6 +474,27 @@ export function getProjectNeighbors(slug) {
 }
 
 export const publications = [
+  {
+    venues: [{ label: "UbiComp/ISWC 2026 Design Exhibition" }],
+    title:
+      "InsectSync 2.0: A Biomimetic Insect-Structured Installation for Experiencing Non-Human Respiratory Rhythms",
+    authors: [
+      { name: "Yuxuan Weng", highlight: true },
+      { name: "Yunge Wen" },
+    ],
+    links: [
+      {
+        label: "Project",
+        href: "project.html?slug=insectsync",
+      },
+      {
+        label: "Lumen Prize",
+        href: "https://lumenprize.org/2025-experiential-award-finalists/yuxuanweng",
+      },
+    ],
+    status: "Accepted",
+    image: "assets/projects/insectsync/cover.jpg",
+  },
   {
     venues: [{ label: "HCI International 2026, pp. 240–251, Springer" }],
     title:
