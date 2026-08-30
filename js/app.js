@@ -1,4 +1,4 @@
-import { site, nav, projects, publications, about } from "./content.js";
+import { site, nav, projects, publications, about, categories } from "./content.js";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js";
 import {
   getLang,
@@ -95,8 +95,76 @@ function renderProjectCard(project) {
 }
 
 function renderProjects() {
-  const items = projects.map(renderProjectCard).join("");
-  return `<ul class="project-grid">${items}</ul>`;
+  const hardwareProjects = projects.filter((p) => p.category === "hardware");
+  const softwareProjects = projects.filter((p) => p.category === "software");
+
+  return `
+    <div class="projects-container">
+      <nav class="category-filters" aria-label="Project categories">
+        <button class="category-filter-btn is-active" data-filter="all" type="button">
+          <span class="lang-en-only">All</span>
+          <span class="lang-cn-only">全部</span>
+          <span class="category-count">${projects.length}</span>
+        </button>
+        <button class="category-filter-btn" data-filter="hardware" type="button">
+          <span class="lang-en-only">Hardware</span>
+          <span class="lang-cn-only">硬件类</span>
+          <span class="category-count">${hardwareProjects.length}</span>
+        </button>
+        <button class="category-filter-btn" data-filter="software" type="button">
+          <span class="lang-en-only">Software</span>
+          <span class="lang-cn-only">软件类</span>
+          <span class="category-count">${softwareProjects.length}</span>
+        </button>
+      </nav>
+
+      <section class="project-category-section" data-category="hardware">
+        <div class="category-header">
+          <h2 class="category-title">
+            <span class="category-title-en">Hardware</span>
+            <span class="category-title-cn">硬件类</span>
+          </h2>
+          <span class="category-subtitle lang-en-only">Physical Computing &amp; Interactive Installations</span>
+          <span class="category-subtitle lang-cn-only">实体计算与交互装置</span>
+        </div>
+        <ul class="project-grid">${hardwareProjects.map(renderProjectCard).join("")}</ul>
+      </section>
+
+      <section class="project-category-section" data-category="software">
+        <div class="category-header">
+          <h2 class="category-title">
+            <span class="category-title-en">Software</span>
+            <span class="category-title-cn">软件类</span>
+          </h2>
+          <span class="category-subtitle lang-en-only">VR, Games &amp; Digital Systems</span>
+          <span class="category-subtitle lang-cn-only">虚拟现实、游戏与数字系统</span>
+        </div>
+        <ul class="project-grid">${softwareProjects.map(renderProjectCard).join("")}</ul>
+      </section>
+    </div>
+  `;
+}
+
+function bindCategoryFilters() {
+  const buttons = document.querySelectorAll(".category-filter-btn");
+  const sections = document.querySelectorAll(".project-category-section");
+  if (!buttons.length || !sections.length) return;
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter;
+      buttons.forEach((b) => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+
+      sections.forEach((sec) => {
+        if (filter === "all" || sec.dataset.category === filter) {
+          sec.style.display = "";
+        } else {
+          sec.style.display = "none";
+        }
+      });
+    });
+  });
 }
 
 function renderVenues(venues) {
@@ -255,6 +323,7 @@ function init() {
   switch (page) {
     case "projects":
       contentEl.innerHTML = renderProjects();
+      bindCategoryFilters();
       break;
     case "publications":
       contentEl.innerHTML = renderPublications();

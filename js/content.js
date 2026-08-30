@@ -21,11 +21,29 @@ export const nav = [
   { label: "About", labelCn: "关于", href: "about.html", id: "about" },
 ];
 
+export const categories = [
+  {
+    id: "hardware",
+    labelEn: "Hardware",
+    labelCn: "硬件类",
+    subtitleEn: "Physical Computing & Interactive Installations",
+    subtitleCn: "实体计算与交互装置",
+  },
+  {
+    id: "software",
+    labelEn: "Software",
+    labelCn: "软件类",
+    subtitleEn: "VR, Games & Digital Systems",
+    subtitleCn: "虚拟现实、游戏与数字系统",
+  },
+];
+
 export const projects = [
   {
     slug: "nephocodex",
     titleEn: "Nephocodex",
     titleCn: "云象",
+    category: "hardware",
     cover: "assets/projects/nephocodex/cover.png",
     images: ["assets/projects/nephocodex/cover.png"],
     tagsEn: ["Clouds", "Weather", "Interactive Installation", "Materiality"],
@@ -83,6 +101,7 @@ export const projects = [
     slug: "insectsync",
     titleEn: "InsectSync2.0",
     titleCn: "昆虫同步",
+    category: "hardware",
     cover: "assets/projects/insectsync/cover.jpg",
     images: ["assets/projects/insectsync/cover.jpg"],
     tagsEn: ["Diapause", "Wearable Device", "No Electric Drive"],
@@ -153,6 +172,7 @@ export const projects = [
     slug: "shadowgesture",
     titleEn: "ShadowGesture",
     titleCn: "皮影戏",
+    category: "software",
     cover: "assets/projects/shadowgesture/cover.jpg",
     images: ["assets/projects/shadowgesture/cover.jpg"],
     tagsEn: [
@@ -197,6 +217,7 @@ export const projects = [
     slug: "kaia",
     titleEn: "KAIA",
     titleCn: "凯娅",
+    category: "software",
     cover: "assets/projects/kaia/cover.png",
     images: ["assets/projects/kaia/cover.png"],
     tagsEn: ["Nostalgia", "2D platforming Game"],
@@ -261,6 +282,7 @@ export const projects = [
     slug: "aquasense",
     titleEn: "AquaSense",
     titleCn: "水感",
+    category: "hardware",
     cover: "assets/projects/aquasense/cover.jpg",
     images: ["assets/projects/aquasense/cover.jpg"],
     tagsEn: ["Interactive Installations", "Marine Ecology", "Sustainable Education"],
@@ -313,6 +335,7 @@ export const projects = [
     slug: "rhymarc",
     titleEn: "Rhymarc 24/7",
     titleCn: "节律弧24/7",
+    category: "hardware",
     cover: "assets/projects/rhymarc/cover.jpg",
     images: ["assets/projects/rhymarc/cover.jpg"],
     tagsEn: ["UI/UX", "Wearable Devices", "Urban Design"],
@@ -355,6 +378,7 @@ export const projects = [
     slug: "heartstrings",
     titleEn: "HeartStrings",
     titleCn: "安宁疗护",
+    category: "hardware",
     cover: "assets/projects/heartstrings/cover.jpg",
     images: ["assets/projects/heartstrings/cover.jpg"],
     tagsEn: ["hospice", "product design", "emotional design", "Kano model", "healthcare"],
@@ -392,6 +416,7 @@ export const projects = [
     slug: "comfort-box",
     titleEn: "Comfort@42Box:Flex&Fee",
     titleCn: "舒适盒",
+    category: "hardware",
     cover: "assets/projects/comfort-box/cover.jpg",
     images: ["assets/projects/comfort-box/cover.jpg"],
     tagsEn: ["Urban Computing", "Interactive Installation"],
@@ -423,6 +448,7 @@ export const projects = [
     slug: "my-naked-soul",
     titleEn: "My Naked Soul",
     titleCn: "小灵魂",
+    category: "software",
     cover: "assets/projects/my-naked-soul/cover.png",
     images: ["assets/projects/my-naked-soul/cover.png"],
     tagsEn: ["Serious Games", "Multiple Playthroughs"],
