@@ -3,6 +3,7 @@ Thumbs.db
 *.log
 scripts/__pycache__/
 scripts/_*.txt
+scripts/_*.png
 .env
 .vscode/
 .idea/

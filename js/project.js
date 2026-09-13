@@ -7,6 +7,7 @@ import {
   initLang,
   updateHeaderContent,
 } from "./lang.js";
+import { initHoverZoom } from "./zoom.js";
 
 function renderHeader(activePage) {
   const lang = getLang();
@@ -403,6 +404,7 @@ function renderNotFound() {
 function init() {
   initTheme();
   initLang();
+  initHoverZoom();
   const headerEl = document.getElementById("site-header");
   const contentEl = document.getElementById("page-content");
   const slug = new URLSearchParams(window.location.search).get("slug");

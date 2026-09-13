@@ -17,6 +17,9 @@
   --grid-gap: 1.5rem;
   --page-padding: 2rem 2rem 4rem;
   --header-gap: 1.5rem;
+  --cursor-default: url("../assets/cursor/dark/cursor.png") 2 2, auto;
+  --cursor-pointer: url("../assets/cursor/dark/pointer.png") 10 2, pointer;
+  --cursor-zoom: url("../assets/cursor/dark/zoom.png") 12 12, zoom-in;
   color-scheme: dark;
 }
 
@@ -30,6 +33,9 @@
   --color-image-bg: #e8e8e8;
   --color-frame-bg: #ffffff;
   --color-frame-border: #e0e0e0;
+  --cursor-default: url("../assets/cursor/light/cursor.png") 2 2, auto;
+  --cursor-pointer: url("../assets/cursor/light/pointer.png") 10 2, pointer;
+  --cursor-zoom: url("../assets/cursor/light/zoom.png") 12 12, zoom-in;
   color-scheme: light;
 }
 
@@ -1502,5 +1508,81 @@ body.lightbox-open {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25rem;
+  }
+}
+
+/* ── Pixel cursors & hover magnify ──
+   Pointer devices only: touch has no cursor, and a hover state that sticks
+   after a tap reads as a stuck zoom. */
+
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body {
+    cursor: var(--cursor-default);
+  }
+
+  a,
+  button,
+  summary,
+  [role="button"],
+  .theme-toggle,
+  .lang-toggle,
+  .category-filter-btn,
+  .project-thumb,
+  .project-tags-link,
+  .lightbox-close,
+  .lightbox-nav {
+    cursor: var(--cursor-pointer);
+  }
+
+  .publication-figure,
+  .project-detail-figure:not(.project-detail-video),
+  .project-detail-image,
+  .lightbox-image {
+    cursor: var(--cursor-zoom);
+  }
+
+  /* Clipped frames magnify the image inside its existing crop. */
+  .project-thumb .project-image,
+  .project-detail-figure-detail .project-detail-image {
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.2s ease;
+  }
+
+  .project-thumb:hover .project-image,
+  .project-detail-figure-detail:hover .project-detail-image {
+    transform: scale(1.08);
+  }
+
+  /* Unclipped figures scale as a whole and lift above their neighbours. */
+  .publication-figure,
+  .project-detail-figure-top,
+  .project-detail-figure-overall {
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .publication-figure:hover,
+  .project-detail-figure-top:hover,
+  .project-detail-figure-overall:hover {
+    position: relative;
+    z-index: 20;
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-thumb .project-image,
+  .project-detail-figure-detail .project-detail-image,
+  .publication-figure,
+  .project-detail-figure-top,
+  .project-detail-figure-overall {
+    transition: none;
+  }
+
+  .project-thumb:hover .project-image,
+  .project-detail-figure-detail:hover .project-detail-image,
+  .publication-figure:hover,
+  .project-detail-figure-top:hover,
+  .project-detail-figure-overall:hover {
+    transform: none;
   }
 }

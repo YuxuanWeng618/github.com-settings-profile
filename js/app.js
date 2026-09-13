@@ -7,6 +7,7 @@ import {
   initLang,
   updateHeaderContent,
 } from "./lang.js";
+import { initHoverZoom } from "./zoom.js";
 
 function renderHeader(activePage) {
   const lang = getLang();
@@ -307,6 +308,7 @@ function renderAbout() {
 function init() {
   initTheme();
   initLang();
+  initHoverZoom();
   const page = document.body.dataset.page;
   const headerEl = document.getElementById("site-header");
   const contentEl = document.getElementById("page-content");
