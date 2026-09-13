@@ -10,7 +10,7 @@ export const site = {
   tagline: "Designer, Researcher",
   taglineCn: "设计师, 研究员",
   email: "CQWengyuxuan@outlook.com",
-  lastUpdate: "Aug, 2026",
+  lastUpdate: "Sep, 2026",
   googleScholar:
     "https://scholar.google.com/citations?view_op=list_works&hl=zh-TW&user=yqzwOIAAAAJ",
 };
@@ -40,34 +40,152 @@ export const categories = [
 
 export const projects = [
   {
+    slug: "comet",
+    titleEn: "CoMeT",
+    titleCn: "CoMeT：随学习者回应调整的 AI 编程导师",
+    category: "software",
+    cover: "assets/projects/comet/cover.webp",
+    images: ["assets/projects/comet/cover.webp"],
+    tagsEn: ["AI in Education", "Adaptive Scaffolding", "Metacognition", "Human–AI Interaction"],
+    tagsCn: ["教育人工智能", "自适应支架", "元认知", "人机协作"],
+    href: "project.html?slug=comet",
+    detail: {
+      meta: [
+        { en: "Academic research", cn: "学术研究" },
+        { en: "Interactive software prototype", cn: "交互软件原型" },
+      ],
+      overview: {
+        en: "An AI programming tutor that adjusts its help while keeping key decisions with the learner.",
+        cn: "让 AI 随学习者的表现调整帮助，同时把关键决定留给学习者。",
+      },
+      bodyEn:
+        "When an AI can write a working program, what should the learner still work out? CoMeT explores this question through a browser-based environment that brings a conversational tutor, a sketchpad, and a code editor into the same workspace. Learners move through planning, monitoring, and evaluating a Python task, making their approach visible before asking the system to carry out more of the work.\n\nThe tutor adjusts support around specific decisions. It begins with a question, adds a targeted hint or a parallel example when the learner remains stuck, and reduces support when the learner addresses the decision. This separates the work the AI performs from the thinking the learner is asked to do. The interface and support logic make that relationship observable across a learning session.\n\nIn a study with 131 adult learners completing three Python tasks, CoMeT maintained a level of metacognitive demand comparable to a question-only tutor and caused less frustration than that tutor. It also delivered artifacts into the workspace twice as often as an unrestricted assistant. The study examines support and decision-making within one session; effects on long-term retention and transfer remain to be tested.",
+      bodyCn:
+        "当 AI 已经能够写出可运行的程序，学习者还需要亲自想清楚什么？CoMeT 把对话式导师、草图板和代码编辑器放在同一个浏览器工作空间中，让学习者经历规划、监控和评估三个阶段。在请求 AI 承担更多工作之前，学习者先表达自己的思路，让原本不易看见的判断过程进入交互。\n\n导师围绕具体的决策点调整支持：先提出问题，在学习者仍然受阻时补充针对性提示或平行示例，当学习者的回应触及当前决定时，再减少帮助。系统可以承担不同程度的执行工作，学习者仍需说明方案、检查过程并判断结果。界面与支持逻辑共同呈现这种责任分配如何在一次学习会话中变化。\n\n131 名成年学习者分别使用三种导师完成了三个 Python 任务。CoMeT 保持了与只提问导师相近的元认知要求，同时带来更低的挫败感；它向工作区交付成果的频率约为自由回答助手的两倍。这项评估聚焦单次会话中的支持方式与决策行为，长期知识保持和迁移效果仍待检验。",
+      materials: {
+        labelEn: "Medium",
+        labelCn: "媒介 / 形式",
+        en: "Browser-based learning environment, conversational AI, sketchpad, Python editor",
+        cn: "浏览器学习环境、对话式 AI、草图板、Python 编辑器",
+      },
+      overallGallery: [
+        "assets/projects/comet/gallery/comet-fig03-learning-interface.webp",
+        "assets/projects/comet/gallery/comet-fig01-tutor-comparison.webp",
+        "assets/projects/comet/gallery/comet-fig05-adaptive-support.webp",
+        "assets/projects/comet/gallery/comet-fig06-study-procedure.webp",
+        "assets/projects/comet/gallery/comet-fig07-fading-results.webp",
+      ],
+    },
+  },
+  {
+    slug: "everyday-fairness",
+    titleEn: "Everyday Fairness",
+    titleCn: "日常公平：儿童冲突中的多方视角",
+    category: "software",
+    cover: "assets/projects/everyday-fairness/cover.webp",
+    images: ["assets/projects/everyday-fairness/cover.webp"],
+    tagsEn: ["Child–Computer Interaction", "Everyday Fairness", "Conflict Support", "Participatory Perspectives"],
+    tagsCn: ["儿童与计算机交互", "日常公平", "冲突支持", "多方视角"],
+    href: "project.html?slug=everyday-fairness",
+    detail: {
+      meta: [
+        { en: "Academic research", cn: "学术研究" },
+        { en: "Scoping review and interview study", cn: "范围综述与访谈研究" },
+      ],
+      overview: {
+        en: "A research framework for tracing whose account is heard, who may decide, and how fairness changes during a child's conflict.",
+        cn: "从谁的讲述被听见、谁有权决定，到冲突如何演变，理解儿童日常生活中的公平。",
+      },
+      bodyEn:
+        "When children disagree, an intervention can end an argument while leaving its fairness unsettled. Whose account was heard? Which rule applied, and who had the authority to decide? Everyday Fairness examines these questions across children's, caregivers', and teachers' perspectives, following a conflict as it moves between people and institutions.\n\nThe project combines a scoping review of 211 peer-reviewed reports, representing 203 study or project families, with 74 interviews involving 75 participants in mainland China. The event analysis reconstructs 71 participant-described conflicts. Across this material, six recurring issues provide a vocabulary for examining fairness: allocation, procedure, jurisdiction, accountability, autonomy, and recognition. These issues can overlap, change focus, or emerge through adult intervention.\n\nThe resulting visual framework and design matrix propose ways for conflict-support technologies to retain the source and revision history of each account, connect support and action to legitimate authority, and follow an event with proportionate records. The work offers a basis for examining and designing these systems. Its effects on fairness, safety, workload, and decision quality still require evaluation in deployed settings.",
+      bodyCn:
+        "孩子之间的争执平息后，对公平的疑问可能仍然存在：谁的讲述被听见了，依据的是哪条规则，又由谁作出决定？“日常公平”从儿童、照护者和教师的不同视角出发，追踪一场冲突如何在人与机构之间传递，以及这个过程中什么仍有争议。\n\n项目结合了涵盖 211 篇同行评审报告、203 个研究或项目家族的范围综述，以及在中国大陆开展的 74 次访谈，共涉及 75 名参与者。事件分析重建了参与者描述的 71 个冲突。研究归纳出六类反复出现的公平议题：分配、程序、管辖权、问责、自主与承认。这些议题可能重叠、转移，也可能因成人介入而产生。\n\n由此形成的可视化框架与设计矩阵提出，冲突支持技术应保留不同讲述的来源和修订历史，将支持与行动连接到具有正当权限的角色，并以适度记录追踪事件变化。研究为分析和设计这类技术提供依据，其对公平、安全、工作负担与决策质量的实际影响，仍需在部署研究中检验。",
+      materials: {
+        labelEn: "Medium",
+        labelCn: "媒介 / 形式",
+        en: "Literature synthesis, interviews, conflict-event reconstruction, visual frameworks and design propositions",
+        cn: "文献综合、访谈、冲突事件重建、可视化框架与设计主张",
+      },
+      overallGallery: [
+        "assets/projects/everyday-fairness/gallery/everyday-fairness-fig01-research-overview.webp",
+        "assets/projects/everyday-fairness/gallery/everyday-fairness-fig04-six-fairness-issues.webp",
+        "assets/projects/everyday-fairness/gallery/everyday-fairness-fig06-stakeholders-and-trajectory.webp",
+        "assets/projects/everyday-fairness/gallery/everyday-fairness-fig07-mechanism-cases.webp",
+        "assets/projects/everyday-fairness/gallery/everyday-fairness-fig08-design-matrix.webp",
+        "assets/projects/everyday-fairness/gallery/everyday-fairness-fig02-review-flow.webp",
+        "assets/projects/everyday-fairness/gallery/everyday-fairness-fig03-event-construction.webp",
+        "assets/projects/everyday-fairness/gallery/everyday-fairness-fig05-technology-coverage.webp",
+      ],
+    },
+  },
+  {
+    slug: "forking-garden",
+    titleEn: "Forking Garden",
+    titleCn: "分岔花园 · Forking Garden",
+    category: "software",
+    cover: "assets/projects/forking-garden/cover.webp",
+    images: ["assets/projects/forking-garden/cover.webp"],
+    tagsEn: ["Generative Games", "Narrative Archetypes", "Game AI", "Procedural Content Generation"],
+    tagsCn: ["生成式游戏", "叙事原型", "游戏人工智能", "程序化内容生成"],
+    href: "project.html?slug=forking-garden",
+    detail: {
+      meta: [
+        { en: "Academic research", cn: "学术研究" },
+        { en: "Playable game generation system", cn: "可玩游戏生成系统" },
+      ],
+      overview: {
+        en: "A game generation system that carries the rise and fall of a story into playable encounters.",
+        cn: "让故事的起伏贯穿生成过程，并进入玩家实际经历的关卡。",
+      },
+      bodyEn:
+        "A story can promise danger while its game feels uneventful. Forking Garden explores how a generated game's narrative and mechanics can develop from the same intent. Starting with a storyline and protagonist, the system creates candidate plot nodes, assembles them into branching paths, and turns those nodes into playable dungeon levels.\n\nA shared Rise/Fall representation carries the narrative arc through the pipeline. It guides graph construction and influences encounters, objectives, rewards, and runtime difficulty adjustment. A symbolic schema keeps characters, objects, and gameplay configurations connected as content is instantiated. The system first generates candidate nodes and then applies structural constraints, allowing varied ideas to be organized into coherent paths.\n\nAcross ten storylines, the generated paths showed distinguishable archetypal trajectories, while entity diversity was 2.6 times that of a hierarchical baseline. A study with 16 participants suggested that the narrative distinctions could remain meaningful during play and help creators interpret alternative story directions. The evaluation also exposed limits: different stories could produce similar combat, and generated spaces sometimes contained clutter or mismatches between descriptions and behavior.",
+      bodyCn:
+        "故事可以宣告危险，游戏过程却未必让人感到紧张。Forking Garden 探索生成式游戏中的叙事与机制如何围绕同一意图展开。系统从故事线和主角出发，生成候选情节节点，将它们组织成分支路径，再把节点转化为可以实际游玩的地牢关卡。\n\n贯穿这条流程的是一套共享的 Rise/Fall 叙事起伏表征。它参与图结构规划，并影响敌人遭遇、任务目标、奖励和运行时难度调整。符号化内容结构让角色、物品与玩法配置在实例化过程中保持联系。系统先生成候选节点，再施加结构约束，使多样的情节构想能够被组织为连贯路径。\n\n在十条故事线的技术评估中，生成路径呈现出可区分的叙事原型轨迹，实体多样性达到分层基线的 2.6 倍。16 人研究表明，这些叙事差异能够在游玩中保持一定意义，也帮助创作者理解不同的故事走向。研究同时发现，不同故事仍可能带来相似的战斗体验，部分生成空间存在拥挤或描述与行为不一致的问题。",
+      materials: {
+        labelEn: "Medium",
+        labelCn: "媒介 / 形式",
+        en: "Branching narrative graphs, symbolic content schemas, generated game assets, playable dungeon levels",
+        cn: "分支叙事图、符号化内容结构、生成式游戏素材、可玩地牢关卡",
+      },
+      overallGallery: [
+        "assets/projects/forking-garden/gallery/forking-garden-fig01-generation-and-play.webp",
+        "assets/projects/forking-garden/gallery/forking-garden-fig02-planning-pipeline.webp",
+        "assets/projects/forking-garden/gallery/forking-garden-fig03-narrative-gameplay.webp",
+        "assets/projects/forking-garden/gallery/forking-garden-fig04-archetype-distribution.webp",
+        "assets/projects/forking-garden/gallery/forking-garden-fig05-threat-and-damage.webp",
+        "assets/projects/forking-garden/gallery/forking-garden-fig06-narrative-trajectories.webp",
+        "assets/projects/forking-garden/gallery/forking-garden-fig07-entity-diversity.webp",
+      ],
+    },
+  },
+  {
     slug: "nephocodex",
-    titleEn: "Nephocodex",
-    titleCn: "云象",
+    titleEn: "NephoCodex",
+    titleCn: "云象 · NephoCodex",
     category: "hardware",
-    cover: "assets/projects/nephocodex/cover.png",
-    images: ["assets/projects/nephocodex/cover.png"],
-    tagsEn: ["Clouds", "Weather", "Interactive Installation", "Materiality"],
-    tagsCn: ["云", "气象", "交互装置", "物质性"],
+    cover: "assets/projects/nephocodex/cover.webp",
+    images: ["assets/projects/nephocodex/cover.webp"],
+    tagsEn: ["Clouds", "Weather", "Data Physicalization", "Material Agency", "Interactive Installation"],
+    tagsCn: ["云", "气象数据", "数据物理化", "材料能动性", "交互装置"],
     href: "project.html?slug=nephocodex",
     detail: {
       meta: [
-        { en: "Collaborative Project", cn: "合作项目" },
-        { en: "Academic Project", cn: "学术项目" },
-        { en: "Spring 2026", cn: "2026春季" },
+        { en: "Academic research", cn: "学术研究" },
+        { en: "Interactive installation", cn: "交互装置" },
       ],
       overview: {
-        en: "An experimental installation based on real-time meteorological data and ice-screen interaction",
-        cn: "一个基于实时气象数据与冰屏交互的实验装置",
+        en: "A weather data installation in which computation guides the conditions for a cloud to form.",
+        cn: "用计算设定云雾生成的条件，让气象数据在材料变化中显现。",
       },
       bodyEn:
-        "The inspiration for Nephocodex stems from my lifelong habit of observing the sky. In my personal experience and memory, the ever-changing clouds that once filled the horizon seem to be gradually vanishing. This subjective sense of loss drove me to conduct research, where I discovered a compelling parallax: \"cloud cover\" as seen from the ground differs drastically from how it appears when looking down at the atmosphere from outer space.\n\nThis discovery prompted me to re-examine the environmental narratives of my education, where the appearance or disappearance of clouds is often simplified as a mere symptom of pollution or destruction. However, based on the Gaia Hypothesis, the Earth is a self-regulating, living system. Atmospheric phenomena are not merely signals of damage but are integral parts of the planet's homeostasis (self-balancing mechanism). This installation centers on \"clouds\" as the primary subject to reconstruct this perception.",
+        "A cloud changes as we look at it. NephoCodex brings this shifting quality into a physical encounter with weather data: visitors can approach transparent modules, move around them, and watch mist gather and disperse alongside digital information. The work explores how the uncertainty of weather predictions can enter the behavior of a material display.\n\nA calibrated model predicts probability distributions over five artistic weather states. These probabilities shape proposed controls for mist, airflow, and light. Local sensing and safety constraints regulate their execution, while air movement, moisture, and visitors continue to affect the cloud's appearance. The project describes this relationship as bounded material agency: computation sets limits within which the material can vary. Transparent displays provide stable annotations alongside the changing mist.\n\nThe design was informed by interviews with six experts and evaluated against conventional weather charts in a study with 13 participants. The installation increased spatial presence and physical demand, with visitors changing viewpoint and waiting for transitions. Perceived data comprehensibility remained inconclusive after correction for multiple comparisons. These findings support pairing an embodied encounter with readable digital information about the data and its mappings.",
       bodyCn:
-        "Nephocodex 的灵感源于我长期仰望天空的本能习惯。在我的个体经验与记忆中，曾经漫天变幻的云朵似乎正在日益消逝。这种主观的缺失感驱使我展开调研，并发现了一个有趣的视差：地面视角下的「云量」与从宇宙俯瞰大气层的「云量」截然不同。\n\n这一发现促使我重新审视既往教育中关于环境的叙事——云的生灭往往被单纯视为污染或破坏的表征。然而，基于「盖亚假说」，地球是一个具有自我调节能力的生命系统，大气现象并非单一的受损信号，而是地球自我平衡机制的一部分。本装置以「云」为主体，试图重构这一认知。",
+        "云的形态总在观看中变化。NephoCodex 将这种变化带入气象数据的物理呈现：观众可以走近透明模块、绕行观察，在数字信息旁观看水雾聚集和消散。作品探索天气预测中的不确定性，如何参与一个材料显示系统的运行。\n\n经过概率校准的模型预测五种艺术化天气状态的分布，再将这些概率映射为雾化、气流和灯光的控制建议。本地传感与安全约束调节执行过程，空气流动、水汽和观众的移动则继续影响云雾外观。项目以“有界材料能动性”描述这种关系：计算划定材料变化的范围，具体形态仍会发生变化。透明屏上的数字标注为这段动态体验提供稳定的信息参照。\n\n设计由六位专家的访谈提供依据，并在一项 13 人研究中与常规天气图表进行比较。装置提高了空间临场感和身体活动需求，观众会改变视角并等待状态转换；感知数据可理解性的差异在多重比较校正后仍不明确。研究由此支持将具身体验与清晰的数值、来源及映射说明结合起来。",
       materials: {
-        labelEn: "Materials",
-        labelCn: "材料",
-        en: "Aluminum Profiles, U-Groove, Acrylic Boards, 12V Lithium Battery, 220V Portable Power Bank, DHT11 Sensor, R3 Arduino Board, Microphone Sound Sensor, Rain Sensor Module",
-        cn: "铝型材、U型槽、亚克力板、12V 锂电池、220V 便携移动电源、DHT11 温湿度传感器、Arduino Uno R3 开发板、麦克风声音传感器、雨水传感器模块",
+        labelEn: "Medium",
+        labelCn: "媒介 / 形式",
+        en: "Mist, airflow, light, transparent displays, aluminum and acrylic structure, sensors and Arduino control",
+        cn: "水雾、气流、灯光、透明显示屏、铝型材与亚克力结构、传感器及 Arduino 控制",
       },
       dimensions: {
         labelEn: "Dimensions",
@@ -87,6 +205,13 @@ export const projects = [
         "assets/projects/nephocodex/gallery/pic8.jpg",
       ],
       overallGallery: [
+        "assets/projects/nephocodex/gallery/nephocodex-fig01-installation.webp",
+        "assets/projects/nephocodex/gallery/nephocodex-fig08-hardware.webp",
+        "assets/projects/nephocodex/gallery/nephocodex-fig07-water-to-mist.webp",
+        "assets/projects/nephocodex/gallery/nephocodex-fig03-system-overview.webp",
+        "assets/projects/nephocodex/gallery/nephocodex-fig11-study-setting.webp",
+        "assets/projects/nephocodex/gallery/nephocodex-fig13-spatial-behaviour.webp",
+        "assets/projects/nephocodex/gallery/nephocodex-fig15-exhibition.webp",
         "assets/projects/nephocodex/gallery/pic2.jpg",
         "assets/projects/nephocodex/gallery/pic9.jpg",
         "assets/projects/nephocodex/gallery/pic10.jpg",
@@ -500,6 +625,41 @@ export function getProjectNeighbors(slug) {
 }
 
 export const publications = [
+  {
+    venues: [{ label: "CHI 2027" }],
+    title:
+      "Adaptive Scaffolding Needs Contingency: An AI Tutor That Escalates and Fades on What the Learner Does",
+    authors: [{ name: "Yuxuan Weng", highlight: true }, { name: "et al." }],
+    links: [{ label: "Project", href: "project.html?slug=comet" }],
+    status: "Under review",
+    image: "assets/projects/comet/cover.webp",
+  },
+  {
+    venues: [{ label: "CHI 2027" }],
+    title: "NephoCodex: Exploring Bounded Material Agency in Weather Data Physicalization",
+    authors: [{ name: "Yuxuan Weng", highlight: true }, { name: "et al." }],
+    links: [{ label: "Project", href: "project.html?slug=nephocodex" }],
+    status: "Under review",
+    image: "assets/projects/nephocodex/cover.webp",
+  },
+  {
+    venues: [{ label: "CHI 2027" }],
+    title:
+      "The Garden of Forking Paths: Threading Narrative Archetype as a Semantic Signal Through Gameplay Planning",
+    authors: [{ name: "Yuxuan Weng", highlight: true }, { name: "et al." }],
+    links: [{ label: "Project", href: "project.html?slug=forking-garden" }],
+    status: "Under review",
+    image: "assets/projects/forking-garden/cover.webp",
+  },
+  {
+    venues: [{ label: "CHI 2027" }],
+    title:
+      "Beyond Training the Child: A Scoping Review and Interview Study of Everyday Fairness in Children's Conflict Technologies",
+    authors: [{ name: "Yuxuan Weng", highlight: true }, { name: "et al." }],
+    links: [{ label: "Project", href: "project.html?slug=everyday-fairness" }],
+    status: "Under review",
+    image: "assets/projects/everyday-fairness/cover.webp",
+  },
   {
     venues: [{ label: "UbiComp/ISWC 2026 Design Exhibition" }],
     title:
