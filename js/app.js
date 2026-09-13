@@ -1,13 +1,21 @@
-import { site, nav, projects, publications, about, categories } from "./content.js";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js";
+// See js/lang.js for why every import specifier carries the same ?v= token.
+import {
+  site,
+  nav,
+  projects,
+  publications,
+  about,
+  categories,
+} from "./content.js?v=20260914a";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260914a";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js";
-import { initHoverZoom } from "./zoom.js";
+} from "./lang.js?v=20260914a";
+import { initHoverZoom } from "./zoom.js?v=20260914a";
 
 function renderHeader(activePage) {
   const lang = getLang();
