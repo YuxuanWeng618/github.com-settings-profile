@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play — YuxuanWeng</title>
+    <meta name="description" content="Cinematic entry to the portfolio — games, installations and research by Yuxuan Weng." />
+    <link rel="canonical" href="https://yuxuanweng.com/play/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="play.css?v=port1" />
+    <script>
+      (function () {
+        var l = localStorage.getItem("portfolio-lang");
+        var lang = l === "cn" ? "cn" : "en";
+        document.documentElement.setAttribute("data-lang", lang);
+        document.documentElement.lang = lang === "cn" ? "zh-Hans" : "en";
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="aurora"></div>
+    <canvas id="stars"></canvas>
+    <div class="scanlines"></div>
+
+    <div id="preloader">
+      <div class="pre-logo">Yuxuan Weng</div>
+      <div class="pre-spinner"></div>
+      <p class="pre-label">Loading 0 / 3</p>
+    </div>
+
+    <main class="page" id="play-root"></main>
+
+    <script type="module" src="play.js?v=research1"></script>
+  </body>
+</html>

@@ -4,16 +4,16 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20260914g";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260914g";
+} from "./content.js?v=20260915a";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260915a";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260914g";
-import { initHoverZoom } from "./zoom.js?v=20260914g";
+} from "./lang.js?v=20260915a";
+import { initHoverZoom } from "./zoom.js?v=20260915a";
 
 function renderHeader(activePage) {
   const lang = getLang();
@@ -372,7 +372,7 @@ function renderProjectDetail(project) {
   const detail = project.detail || {};
   const { prev, next } = getProjectNeighbors(project.slug);
 
-  document.title = `${project.titleEn} �?${site.name}`;
+  document.title = `${project.titleEn} — ${site.name}`;
 
   return `
     <article class="project-detail">
@@ -408,9 +408,9 @@ function renderProjectDetail(project) {
           <a href="${next.href}">Next</a>
         </span>
         <span class="lang-cn-only">
-          <a href="${prev.href}">上一�?/a>
+          <a href="${prev.href}">上一项</a>
           <span class="project-detail-nav-sep">/</span>
-          <a href="${next.href}">下一�?/a>
+          <a href="${next.href}">下一项</a>
         </span>
       </nav>
     </article>

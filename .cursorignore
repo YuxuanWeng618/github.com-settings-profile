@@ -1,0 +1,23 @@
+# Keep binary media out of Cursor's index and workspace snapshots.
+#
+# These files are large, numerous, and have been rewritten many times by image
+# compression and format conversion (PNG -> JPG -> WebP). Every past version of
+# every image was retained in the snapshot store, which grew a 154 MB workspace
+# into 3 GB snapshot packs and filled the C: drive.
+#
+# Excluding them costs nothing: the agent reads image *paths* from js/content.js,
+# never the pixel data.
+
+assets/**/*.webp
+assets/**/*.png
+assets/**/*.jpg
+assets/**/*.jpeg
+assets/**/*.gif
+assets/**/*.mp4
+assets/**/*.mov
+
+# Generated cursor art - regenerate with scripts/make_pixel_cursors.py.
+assets/cursor/
+
+# Local dev artifacts.
+scripts/_*
