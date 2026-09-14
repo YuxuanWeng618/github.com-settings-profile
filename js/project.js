@@ -266,16 +266,22 @@ function renderGallery(detail) {
   const parts = [];
 
   if (detail.video) {
-    const embedUrl = detail.video.includes("embed")
-      ? detail.video
-      : detail.video.replace("watch?v=", "embed/").split("&")[0];
+    let embedUrl = detail.video;
+    if (!embedUrl.includes("embed") && !embedUrl.includes("player.vimeo.com")) {
+      const vimeoMatch = embedUrl.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+      if (vimeoMatch) {
+        embedUrl = `https://player.vimeo.com/video/${vimeoMatch[1]}`;
+      } else {
+        embedUrl = embedUrl.replace("watch?v=", "embed/").split("&")[0];
+      }
+    }
     parts.push(`
       <figure class="project-detail-figure project-detail-video">
         <div class="video-embed">
           <iframe
             src="${embedUrl}"
             title="Project video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
             allowfullscreen
             loading="lazy"
           ></iframe>

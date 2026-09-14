@@ -147,6 +147,7 @@ export const projects = [
         en: "Branching narrative graphs, symbolic content schemas, generated game assets, playable dungeon levels",
         cn: "分支叙事图、符号化内容结构、生成式游戏素材、可玩地牢关卡",
       },
+      video: "https://vimeo.com/1226512448",
       overallGallery: [
         "assets/projects/forking-garden/gallery/forking-garden-fig01-generation-and-play.webp",
         "assets/projects/forking-garden/gallery/forking-garden-fig02-planning-pipeline.webp",
