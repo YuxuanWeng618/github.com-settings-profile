@@ -1,13 +1,21 @@
-// See js/lang.js for why every import specifier carries the same ?v=20260915a"./content.js?v=20260915a";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260915a";
+// See js/lang.js for why every import specifier carries the same ?v= token.
+import {
+  site,
+  nav,
+  projects,
+  publications,
+  about,
+  categories,
+} from "./content.js?v=20260915b";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260915b";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260915a";
-import { initHoverZoom } from "./zoom.js?v=20260915a";
+} from "./lang.js?v=20260915b";
+import { initHoverZoom } from "./zoom.js?v=20260915b";
 
 function renderHeader(activePage) {
   const lang = getLang();
