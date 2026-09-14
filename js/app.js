@@ -6,16 +6,16 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20260914a";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260914a";
+} from "./content.js?v=20260914b";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260914b";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260914a";
-import { initHoverZoom } from "./zoom.js?v=20260914a";
+} from "./lang.js?v=20260914b";
+import { initHoverZoom } from "./zoom.js?v=20260914b";
 
 function renderHeader(activePage) {
   const lang = getLang();
@@ -117,12 +117,12 @@ function renderProjects() {
         </button>
         <button class="category-filter-btn" data-filter="hardware" type="button">
           <span class="lang-en-only">Hardware</span>
-          <span class="lang-cn-only">硬件类</span>
+          <span class="lang-cn-only">硬件�?/span>
           <span class="category-count">${hardwareProjects.length}</span>
         </button>
         <button class="category-filter-btn" data-filter="software" type="button">
           <span class="lang-en-only">Software</span>
-          <span class="lang-cn-only">软件类</span>
+          <span class="lang-cn-only">软件�?/span>
           <span class="category-count">${softwareProjects.length}</span>
         </button>
       </nav>
@@ -131,10 +131,10 @@ function renderProjects() {
         <div class="category-header">
           <h2 class="category-title">
             <span class="category-title-en">Hardware</span>
-            <span class="category-title-cn">硬件类</span>
+            <span class="category-title-cn">硬件�?/span>
           </h2>
           <span class="category-subtitle lang-en-only">Physical Computing &amp; Interactive Installations</span>
-          <span class="category-subtitle lang-cn-only">实体计算与交互装置</span>
+          <span class="category-subtitle lang-cn-only">实体计算与交互装�?/span>
         </div>
         <ul class="project-grid">${hardwareProjects.map(renderProjectCard).join("")}</ul>
       </section>
@@ -143,7 +143,7 @@ function renderProjects() {
         <div class="category-header">
           <h2 class="category-title">
             <span class="category-title-en">Software</span>
-            <span class="category-title-cn">软件类</span>
+            <span class="category-title-cn">软件�?/span>
           </h2>
           <span class="category-subtitle lang-en-only">VR, Games &amp; Digital Systems</span>
           <span class="category-subtitle lang-cn-only">虚拟现实、游戏与数字系统</span>
@@ -221,7 +221,7 @@ function renderPublications() {
 
   return `
     <p class="publication-note lang-en-only">*Corresponding author</p>
-    <p class="publication-note lang-cn-only">*通讯作者</p>
+    <p class="publication-note lang-cn-only">*通讯作�?/p>
     <ul class="publication-list">${items}</ul>
   `;
 }
@@ -258,7 +258,7 @@ function renderAbout() {
             ${bioEn}
             <p class="about-contact text-en">
               <a href="${site.googleScholar}" target="_blank" rel="noopener noreferrer">Google Scholar</a>
-              &nbsp;｜&nbsp;
+              &nbsp;�?nbsp;
               Contact: <a href="mailto:${site.email}">${site.email}</a>
             </p>
           </div>
@@ -267,7 +267,7 @@ function renderAbout() {
             ${bioCn}
             <p class="about-contact text-cn">
               <a href="${site.googleScholar}" target="_blank" rel="noopener noreferrer">Google Scholar</a>
-              &nbsp;｜&nbsp;
+              &nbsp;�?nbsp;
               联系方式: <a href="mailto:${site.email}">${site.email}</a>
             </p>
           </div>
@@ -283,7 +283,7 @@ function renderAbout() {
         <ul class="news-list">${newsEn}</ul>
       </div>
       <div class="project-detail-lang-block project-detail-lang-cn">
-        <h2 class="about-section-title text-cn">📰 最新动态</h2>
+        <h2 class="about-section-title text-cn">📰 最新动�?/h2>
         <ul class="news-list">${newsCn}</ul>
       </div>
     </section>
@@ -309,7 +309,7 @@ function renderAbout() {
     }
 
     <p class="about-footer-note lang-en-only">(Last update: ${site.lastUpdate})</p>
-    <p class="about-footer-note lang-cn-only">（最后更新：${site.lastUpdate}）</p>
+    <p class="about-footer-note lang-cn-only">（最后更新：${site.lastUpdate}�?/p>
   `;
 }
 

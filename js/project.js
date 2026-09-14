@@ -4,16 +4,16 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20260914a";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260914a";
+} from "./content.js?v=20260914b";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260914b";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260914a";
-import { initHoverZoom } from "./zoom.js?v=20260914a";
+} from "./lang.js?v=20260914b";
+import { initHoverZoom } from "./zoom.js?v=20260914b";
 
 function renderHeader(activePage) {
   const lang = getLang();
@@ -262,19 +262,34 @@ function renderDemo(demo) {
   `;
 }
 
+function toVideoEmbedUrl(url) {
+  if (!url) return "";
+  if (url.includes("player.vimeo.com/video/") || url.includes("youtube.com/embed/")) {
+    return url.split("?")[0];
+  }
+
+  const vimeoMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/i);
+  if (vimeoMatch) {
+    return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
+  }
+
+  if (url.includes("watch?v=")) {
+    return url.replace("watch?v=", "embed/").split("&")[0];
+  }
+
+  if (url.includes("youtu.be/")) {
+    const id = url.split("youtu.be/")[1]?.split(/[?&]/)[0];
+    return id ? `https://www.youtube.com/embed/${id}` : url;
+  }
+
+  return url;
+}
+
 function renderGallery(detail) {
   const parts = [];
 
   if (detail.video) {
-    let embedUrl = detail.video;
-    if (!embedUrl.includes("embed") && !embedUrl.includes("player.vimeo.com")) {
-      const vimeoMatch = embedUrl.match(/vimeo\.com\/(?:video\/)?(\d+)/);
-      if (vimeoMatch) {
-        embedUrl = `https://player.vimeo.com/video/${vimeoMatch[1]}`;
-      } else {
-        embedUrl = embedUrl.replace("watch?v=", "embed/").split("&")[0];
-      }
-    }
+    const embedUrl = toVideoEmbedUrl(detail.video);
     parts.push(`
       <figure class="project-detail-figure project-detail-video">
         <div class="video-embed">
@@ -357,7 +372,7 @@ function renderProjectDetail(project) {
   const detail = project.detail || {};
   const { prev, next } = getProjectNeighbors(project.slug);
 
-  document.title = `${project.titleEn} — ${site.name}`;
+  document.title = `${project.titleEn} �?${site.name}`;
 
   return `
     <article class="project-detail">
@@ -393,9 +408,9 @@ function renderProjectDetail(project) {
           <a href="${next.href}">Next</a>
         </span>
         <span class="lang-cn-only">
-          <a href="${prev.href}">上一项</a>
+          <a href="${prev.href}">上一�?/a>
           <span class="project-detail-nav-sep">/</span>
-          <a href="${next.href}">下一项</a>
+          <a href="${next.href}">下一�?/a>
         </span>
       </nav>
     </article>
