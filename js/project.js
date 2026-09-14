@@ -4,16 +4,16 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20260914e";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260914e";
+} from "./content.js?v=20260914f";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260914f";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260914e";
-import { initHoverZoom } from "./zoom.js?v=20260914e";
+} from "./lang.js?v=20260914f";
+import { initHoverZoom } from "./zoom.js?v=20260914f";
 
 function renderHeader(activePage) {
   const lang = getLang();
