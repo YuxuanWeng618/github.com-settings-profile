@@ -4,16 +4,16 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20260914f";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260914f";
+} from "./content.js?v=20260914g";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260914g";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260914f";
-import { initHoverZoom } from "./zoom.js?v=20260914f";
+} from "./lang.js?v=20260914g";
+import { initHoverZoom } from "./zoom.js?v=20260914g";
 
 function renderHeader(activePage) {
   const lang = getLang();
@@ -372,7 +372,7 @@ function renderProjectDetail(project) {
   const detail = project.detail || {};
   const { prev, next } = getProjectNeighbors(project.slug);
 
-  document.title = `${project.titleEn} â€?${site.name}`;
+  document.title = `${project.titleEn} ï¿?${site.name}`;
 
   return `
     <article class="project-detail">
@@ -408,9 +408,9 @@ function renderProjectDetail(project) {
           <a href="${next.href}">Next</a>
         </span>
         <span class="lang-cn-only">
-          <a href="${prev.href}">ä¸Šä¸€é¡?/a>
+          <a href="${prev.href}">ä¸Šä¸€ï¿?/a>
           <span class="project-detail-nav-sep">/</span>
-          <a href="${next.href}">ä¸‹ä¸€é¡?/a>
+          <a href="${next.href}">ä¸‹ä¸€ï¿?/a>
         </span>
       </nav>
     </article>

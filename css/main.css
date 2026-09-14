@@ -1542,30 +1542,51 @@ body.lightbox-open {
     cursor: var(--cursor-zoom);
   }
 
-  /* Clipped frames magnify the image inside its existing crop. */
+  /* Clipped frames magnify the image inside its existing crop.
+     Scale motion is driven by js/zoom.js spring (CardSpring: stiffness 900,
+     damping 30, hoverScale 1.15). CSS only handles the no-JS fallback. */
   .project-thumb .project-image,
   .project-detail-figure-detail .project-detail-image {
+    transform-origin: center center;
+    transition: opacity 0.2s ease;
+  }
+
+  html:not(.js-spring-zoom) .project-thumb .project-image,
+  html:not(.js-spring-zoom) .project-detail-figure-detail .project-detail-image {
     transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.2s ease;
   }
 
-  .project-thumb:hover .project-image,
-  .project-detail-figure-detail:hover .project-detail-image {
-    transform: scale(1.08);
+  html:not(.js-spring-zoom) .project-thumb:hover .project-image,
+  html:not(.js-spring-zoom) .project-detail-figure-detail:hover .project-detail-image {
+    transform: scale(1.15);
   }
 
   /* Unclipped figures scale as a whole and lift above their neighbours. */
   .publication-figure,
   .project-detail-figure-top,
   .project-detail-figure-overall {
+    transform-origin: center center;
+  }
+
+  html.js-spring-zoom .publication-figure:hover,
+  html.js-spring-zoom .project-detail-figure-top:hover,
+  html.js-spring-zoom .project-detail-figure-overall:hover {
+    position: relative;
+    z-index: 20;
+  }
+
+  html:not(.js-spring-zoom) .publication-figure,
+  html:not(.js-spring-zoom) .project-detail-figure-top,
+  html:not(.js-spring-zoom) .project-detail-figure-overall {
     transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
 
-  .publication-figure:hover,
-  .project-detail-figure-top:hover,
-  .project-detail-figure-overall:hover {
+  html:not(.js-spring-zoom) .publication-figure:hover,
+  html:not(.js-spring-zoom) .project-detail-figure-top:hover,
+  html:not(.js-spring-zoom) .project-detail-figure-overall:hover {
     position: relative;
     z-index: 20;
-    transform: scale(1.04);
+    transform: scale(1.08);
   }
 }
 
