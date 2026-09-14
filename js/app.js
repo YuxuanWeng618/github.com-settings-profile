@@ -6,16 +6,16 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20260914d";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260914d";
+} from "./content.js?v=20260914e";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260914e";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260914d";
-import { initHoverZoom } from "./zoom.js?v=20260914d";
+} from "./lang.js?v=20260914e";
+import { initHoverZoom } from "./zoom.js?v=20260914e";
 
 function renderHeader(activePage) {
   const lang = getLang();
