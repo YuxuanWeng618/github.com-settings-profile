@@ -6,16 +6,16 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20260916b";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260916b";
+} from "./content.js?v=20260916c";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260916c";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260916b";
-import { initHoverZoom } from "./zoom.js?v=20260916b";
+} from "./lang.js?v=20260916c";
+import { initHoverZoom } from "./zoom.js?v=20260916c";
 
 function renderHeader(activePage) {
   const lang = getLang();
@@ -75,6 +75,21 @@ function renderProjectCard(project) {
     lang === "cn"
       ? `查看 ${project.titleCn}`
       : `View ${project.titleEn}`;
+  const demo = project.detail?.demo;
+  const playHref =
+    demo?.href &&
+    demo.download === false &&
+    /^https?:\/\//i.test(demo.href)
+      ? demo.href
+      : "";
+  const playLink = playHref
+    ? `<p class="project-play-link">
+        <a href="${playHref}" target="_blank" rel="noopener noreferrer">
+          <span class="lang-en-only">Play Demo</span>
+          <span class="lang-cn-only">在线试玩</span>
+        </a>
+      </p>`
+    : "";
 
   return `
     <li class="project-card">
@@ -98,6 +113,7 @@ function renderProjectCard(project) {
             ? `<a class="project-tags-link" href="${project.href}">${tagsEnHtml}${tagsCnHtml}</a>`
             : ""
         }
+        ${playLink}
       </div>
     </li>
   `;
