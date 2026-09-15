@@ -68,6 +68,7 @@ export const projects = [
         en: "Browser-based learning environment, conversational AI, sketchpad, Python editor",
         cn: "浏览器学习环境、对话式 AI、草图板、Python 编辑器",
       },
+      video: "https://vimeo.com/1226857113",
       overallGallery: [
         "assets/projects/comet/gallery/comet-fig03-learning-interface.webp",
         "assets/projects/comet/gallery/comet-fig01-tutor-comparison.webp",
