@@ -708,11 +708,11 @@ export const publications = [
     title:
       "KAIA: A Game Design Based on Nostalgic Emotion and Experiences of Loss",
     authors: [
+      { name: "Yuxuan Weng", highlight: true, corresponding: true },
       { name: "Yushan Zhang" },
       { name: "Yule Chen" },
       { name: "Dabo Xu" },
       { name: "Yinong Tang" },
-      { name: "Yuxuan Weng", highlight: true, corresponding: true },
     ],
     links: [
       {
