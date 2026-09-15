@@ -155,6 +155,13 @@ export const projects = [
         href: "https://forkgarden.darkmesh.art/",
         download: false,
       },
+      links: [
+        {
+          labelEn: "Play Demo",
+          labelCn: "在线试玩",
+          href: "https://forkgarden.darkmesh.art/",
+        },
+      ],
       overallGallery: [
         "assets/projects/forking-garden/gallery/forking-garden-fig01-generation-and-play.webp",
         "assets/projects/forking-garden/gallery/forking-garden-fig02-planning-pipeline.webp",
@@ -655,7 +662,10 @@ export const publications = [
     title:
       "The Garden of Forking Paths: Threading Narrative Archetype as a Semantic Signal Through Gameplay Planning",
     authors: [{ name: "Yuxuan Weng", highlight: true }, { name: "et al." }],
-    links: [{ label: "Project", href: "project.html?slug=forking-garden" }],
+    links: [
+      { label: "Project", href: "project.html?slug=forking-garden" },
+      { label: "Play Demo", href: "https://forkgarden.darkmesh.art/" },
+    ],
     status: "Under review",
     image: "assets/projects/forking-garden/cover-four-games.webp",
   },

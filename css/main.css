@@ -392,6 +392,16 @@ main {
   color: var(--color-link-hover);
 }
 
+.project-play-link {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+}
+
+.project-play-link a {
+  border-bottom-color: currentColor;
+}
+
 /* ── Lightbox Preview ── */
 
 body.lightbox-open {
