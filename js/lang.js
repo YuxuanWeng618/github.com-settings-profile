@@ -1,8 +1,8 @@
 // Import URLs carry ?v= so a stale module can never pair with a fresh one:
 // Cloudflare edge-caches js for 4h and only the URL distinguishes versions.
 // The token must match across every file or the browser loads two copies.
-import { site, nav } from "./content.js?v=20260915f";
-import { updateThemeToggleLabel } from "./theme.js?v=20260915f";
+import { site, nav } from "./content.js?v=20260916a";
+import { updateThemeToggleLabel } from "./theme.js?v=20260916a";
 
 const LANG_KEY = "portfolio-lang";
 
