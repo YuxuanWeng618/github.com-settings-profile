@@ -4,16 +4,16 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20260915f";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260915f";
+} from "./content.js?v=20260916a";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260916a";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260915f";
-import { initHoverZoom } from "./zoom.js?v=20260915f";
+} from "./lang.js?v=20260916a";
+import { initHoverZoom } from "./zoom.js?v=20260916a";
 
 function renderHeader(activePage) {
   const lang = getLang();
@@ -241,19 +241,23 @@ function renderDemo(demo) {
   }
 
   const downloadAttr = demo.download !== false ? " download" : "";
+  const externalAttr =
+    demo.download === false && /^https?:\/\//i.test(demo.href)
+      ? ' target="_blank" rel="noopener noreferrer"'
+      : "";
   const enLabel = demo.labelEn || "Play Demo";
   const cnLabel = demo.labelCn || "运行 Demo";
 
   return `
     <div class="project-detail-demo">
       <div class="project-detail-lang-block project-detail-lang-en">
-        <a class="project-detail-demo-link" href="${demo.href}"${downloadAttr}>
+        <a class="project-detail-demo-link" href="${demo.href}"${downloadAttr}${externalAttr}>
           <span class="text-en">${enLabel}</span>
         </a>
         ${demo.noteEn ? `<p class="text-en project-detail-demo-note">${demo.noteEn}</p>` : ""}
       </div>
       <div class="project-detail-lang-block project-detail-lang-cn">
-        <a class="project-detail-demo-link project-detail-demo-link-cn" href="${demo.href}"${downloadAttr}>
+        <a class="project-detail-demo-link project-detail-demo-link-cn" href="${demo.href}"${downloadAttr}${externalAttr}>
           <span class="text-cn">${cnLabel}</span>
         </a>
         ${demo.noteCn ? `<p class="text-cn project-detail-demo-note">${demo.noteCn}</p>` : ""}
