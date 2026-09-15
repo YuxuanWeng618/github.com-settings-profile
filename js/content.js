@@ -69,6 +69,19 @@ export const projects = [
         cn: "浏览器学习环境、对话式 AI、草图板、Python 编辑器",
       },
       video: "https://vimeo.com/1226857113",
+      demo: {
+        labelEn: "Play Demo",
+        labelCn: "在线试玩",
+        href: "http://206.189.94.143.sslip.io",
+        download: false,
+      },
+      links: [
+        {
+          labelEn: "Play Demo",
+          labelCn: "在线试玩",
+          href: "http://206.189.94.143.sslip.io",
+        },
+      ],
       overallGallery: [
         "assets/projects/comet/gallery/comet-fig03-learning-interface.webp",
         "assets/projects/comet/gallery/comet-fig01-tutor-comparison.webp",
@@ -645,7 +658,10 @@ export const publications = [
     title:
       "Adaptive Scaffolding Needs Contingency: An AI Tutor That Escalates and Fades on What the Learner Does",
     authors: [{ name: "Yuxuan Weng", highlight: true }, { name: "et al." }],
-    links: [{ label: "Project", href: "project.html?slug=comet" }],
+    links: [
+      { label: "Project", href: "project.html?slug=comet" },
+      { label: "Play Demo", href: "http://206.189.94.143.sslip.io" },
+    ],
     status: "Under review",
     image: "assets/projects/comet/cover.webp",
   },
