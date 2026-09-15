@@ -743,6 +743,34 @@ export const publications = [
     ],
     image: "assets/publications/vital-signs-diagram.png",
   },
+  {
+    venues: [
+      {
+        label:
+          "2024 International Conference on Intelligent Engineering and Next-Gen Healthcare Systems (IEHNS), pp. 1–7, IEEE",
+      },
+    ],
+    title:
+      "Aquasense: A Wearable Interactive Installation for Rising Sustainable Marine Awareness Through Emotional Design Theory",
+    authors: [
+      { name: "Biwan Cai" },
+      { name: "Yuxuan Weng", highlight: true },
+      { name: "Wenqi Xu" },
+      { name: "Yule Chen" },
+      { name: "Lixian Yin" },
+    ],
+    links: [
+      {
+        label: "Paper",
+        href: "https://ieeexplore.ieee.org/abstract/document/11606799",
+      },
+      {
+        label: "Project",
+        href: "project.html?slug=aquasense",
+      },
+    ],
+    image: "assets/projects/aquasense/cover.jpg",
+  },
 ];
 
 export const about = {
