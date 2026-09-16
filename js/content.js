@@ -81,6 +81,11 @@ export const projects = [
           labelCn: "在线试玩",
           href: "http://206.189.94.143.sslip.io",
         },
+        {
+          labelEn: "Technical Documentation (password)",
+          labelCn: "技术说明文档（需密码）",
+          href: "docs.html",
+        },
       ],
       overallGallery: [
         "assets/projects/comet/gallery/comet-fig03-learning-interface.webp",
@@ -805,6 +810,31 @@ export const publications = [
     image: "assets/projects/aquasense/cover.jpg",
   },
 ];
+
+export const protectedDocs = {
+  titleEn: "CoMeT — Technical Documentation",
+  titleCn: "CoMeT — 项目技术说明",
+  introEn:
+    "This technical write-up covers the CoMeT system architecture, adaptive support logic, and implementation details. The files are stored encrypted and are decrypted in your browser after the password is entered.",
+  introCn:
+    "该技术文档介绍 CoMeT 的系统架构、自适应支持逻辑与实现细节。文件以加密形式存放，输入密码后在你的浏览器内解密查看。",
+  files: [
+    {
+      kind: "markdown",
+      labelEn: "Technical note (Markdown)",
+      labelCn: "技术说明（Markdown）",
+      src: "assets/docs/comet-technical-overview.md.enc",
+      filename: "comet-technical-overview.md",
+    },
+    {
+      kind: "pdf",
+      labelEn: "Technical note (PDF)",
+      labelCn: "技术说明（PDF）",
+      src: "assets/docs/comet-technical-overview.pdf.enc",
+      filename: "comet-technical-overview.pdf",
+    },
+  ],
+};
 
 export const about = {
   photo: "assets/about/portrait.png",
