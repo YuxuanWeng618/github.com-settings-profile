@@ -84,7 +84,7 @@ export const projects = [
         {
           labelEn: "Technical Documentation (password)",
           labelCn: "技术说明文档（需密码）",
-          href: "docs.html",
+          href: "docs.html?doc=comet",
         },
       ],
       overallGallery: [
@@ -178,6 +178,11 @@ export const projects = [
           labelEn: "Play Demo",
           labelCn: "在线试玩",
           href: "https://forkgarden.darkmesh.art/",
+        },
+        {
+          labelEn: "Technical Documentation (password)",
+          labelCn: "技术说明文档（需密码）",
+          href: "docs.html?doc=forking-garden",
         },
       ],
       overallGallery: [
@@ -811,29 +816,50 @@ export const publications = [
   },
 ];
 
+// Keys are used as the ?doc= parameter on docs.html. Sources are encrypted with
+// scripts/encrypt_docs.py and only decrypted in the reader's browser.
 export const protectedDocs = {
-  titleEn: "CoMeT — Technical Documentation",
-  titleCn: "CoMeT — 项目技术说明",
-  introEn:
-    "This technical write-up covers the CoMeT system architecture, adaptive support logic, and implementation details. The files are stored encrypted and are decrypted in your browser after the password is entered.",
-  introCn:
-    "该技术文档介绍 CoMeT 的系统架构、自适应支持逻辑与实现细节。文件以加密形式存放，输入密码后在你的浏览器内解密查看。",
-  files: [
-    {
-      kind: "markdown",
-      labelEn: "Technical note (Markdown)",
-      labelCn: "技术说明（Markdown）",
-      src: "assets/docs/comet-technical-overview.md.enc",
-      filename: "comet-technical-overview.md",
-    },
-    {
-      kind: "pdf",
-      labelEn: "Technical note (PDF)",
-      labelCn: "技术说明（PDF）",
-      src: "assets/docs/comet-technical-overview.pdf.enc",
-      filename: "comet-technical-overview.pdf",
-    },
-  ],
+  comet: {
+    titleEn: "CoMeT — Technical Documentation",
+    titleCn: "CoMeT — 项目技术说明",
+    introEn:
+      "This technical write-up covers the CoMeT system architecture, adaptive support logic, and implementation details. The files are stored encrypted and are decrypted in your browser after the password is entered.",
+    introCn:
+      "该技术文档介绍 CoMeT 的系统架构、自适应支持逻辑与实现细节。文件以加密形式存放，输入密码后在你的浏览器内解密查看。",
+    files: [
+      {
+        kind: "markdown",
+        labelEn: "Technical note (Markdown)",
+        labelCn: "技术说明（Markdown）",
+        src: "assets/docs/comet-technical-overview.md.enc",
+        filename: "comet-technical-overview.md",
+      },
+      {
+        kind: "pdf",
+        labelEn: "Technical note (PDF)",
+        labelCn: "技术说明（PDF）",
+        src: "assets/docs/comet-technical-overview.pdf.enc",
+        filename: "comet-technical-overview.pdf",
+      },
+    ],
+  },
+  "forking-garden": {
+    titleEn: "Forking Garden — Technical Documentation",
+    titleCn: "Forking Garden — 全栈技术说明",
+    introEn:
+      "This technical write-up covers the Forking Garden generation pipeline, full-stack architecture, and implementation details. The file is stored encrypted and is decrypted in your browser after the password is entered.",
+    introCn:
+      "该技术文档介绍 Forking Garden 的生成流程、全栈架构与实现细节。文件以加密形式存放，输入密码后在你的浏览器内解密查看。",
+    files: [
+      {
+        kind: "markdown",
+        labelEn: "Technical note (Markdown)",
+        labelCn: "技术说明（Markdown）",
+        src: "assets/docs/forking-garden-technical-overview.md.enc",
+        filename: "forking-garden-technical-overview.md",
+      },
+    ],
+  },
 };
 
 export const about = {
