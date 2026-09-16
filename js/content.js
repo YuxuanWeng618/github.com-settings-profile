@@ -823,6 +823,10 @@ export const about = {
   ],
   newsEn: [
     {
+      date: "Sep 2026",
+      text: "I will present my work at the ISWC 2026 Design Exhibition during ACM UbiComp/ISWC 2026 in Shanghai, China, this October.",
+    },
+    {
       date: "Aug 2026",
       text: "Commencing my Master of Science in Game Design and Art Technology (GDAT) at Nanyang Technological University (NTU), Singapore!",
     },
@@ -848,6 +852,7 @@ export const about = {
     },
   ],
   newsCn: [
+    { date: "2026年9月", text: "将于今年 10 月在中国上海举办的 ACM UbiComp/ISWC 2026 期间，参加 ISWC 2026 设计展览并展出作品。" },
     { date: "2026年8月", text: "将在新加坡南洋理工大学（NTU）攻读游戏设计与艺术技术理学硕士（GDAT）！" },
     { date: "2026年7月", text: "获邀在 HCII 2026 国际会议上展示关于 VR 皮影戏的海报。" },
     { date: "2026年6月", text: '加入 HCI+ 2026 暑期科研项目，任学生研究员，由<a href="https://scholar.google.com/citations?user=AktmI14AAAAJ" target="_blank" rel="noopener noreferrer">龚江涛</a>副教授指导。' },
