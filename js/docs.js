@@ -1,5 +1,5 @@
 // See js/lang.js for why every import specifier carries the same ?v= token.
-import { protectedDocs } from "./content.js?v=20260916g";
+import { protectedDocs } from "./content.js?v=20260916h";
 
 const PBKDF2_ITERATIONS = 250000;
 const MAGIC = "CDOC1\0";
@@ -201,8 +201,14 @@ function renderFileActions(file, objectUrl) {
   `;
 }
 
+function currentDoc() {
+  const requested = new URLSearchParams(window.location.search).get("doc");
+  return protectedDocs[requested] || protectedDocs.comet;
+}
+
 export function renderDocs() {
-  const files = protectedDocs.files
+  const doc = currentDoc();
+  const files = doc.files
     .map(
       (file) => `
         <li>
@@ -216,12 +222,12 @@ export function renderDocs() {
   return `
     <section class="docs-page">
       <h1 class="docs-title">
-        <span class="lang-en-only">${protectedDocs.titleEn}</span>
-        <span class="lang-cn-only">${protectedDocs.titleCn}</span>
+        <span class="lang-en-only">${doc.titleEn}</span>
+        <span class="lang-cn-only">${doc.titleCn}</span>
       </h1>
 
-      <p class="docs-intro lang-en-only">${protectedDocs.introEn}</p>
-      <p class="docs-intro lang-cn-only">${protectedDocs.introCn}</p>
+      <p class="docs-intro lang-en-only">${doc.introEn}</p>
+      <p class="docs-intro lang-cn-only">${doc.introCn}</p>
 
       <ul class="docs-file-list">${files}</ul>
 
@@ -253,6 +259,7 @@ export function renderDocs() {
 }
 
 export function bindDocs() {
+  const doc = currentDoc();
   const form = document.getElementById("docs-gate");
   const input = document.getElementById("docs-password");
   const status = document.getElementById("docs-status");
@@ -275,10 +282,10 @@ export function bindDocs() {
 
     try {
       const decrypted = await Promise.all(
-        protectedDocs.files.map((file) => decryptFile(password, file.src))
+        doc.files.map((file) => decryptFile(password, file.src))
       );
 
-      const parts = protectedDocs.files.map((file, i) => {
+      const parts = doc.files.map((file, i) => {
         const buffer = decrypted[i];
 
         if (file.kind === "markdown") {
