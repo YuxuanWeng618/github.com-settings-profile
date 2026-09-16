@@ -1566,7 +1566,10 @@ body.lightbox-open {
     transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.2s ease;
   }
 
-  html:not(.js-spring-zoom) .project-thumb:hover .project-image,
+  html:not(.js-spring-zoom) .project-thumb:hover .project-image {
+    transform: scale(1.04);
+  }
+
   html:not(.js-spring-zoom) .project-detail-figure-detail:hover .project-detail-image {
     transform: scale(1.15);
   }
@@ -1796,4 +1799,153 @@ body.lightbox-open {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+/* ── Responsive interaction ──
+   Behaviour that pairs with js/responsive.js. Breakpoints stay at 900px and
+   540px so the grid, the galleries and the interaction all switch together. */
+
+/* Long titles, category descriptions and tag strings wrap instead of clipping. */
+.category-title,
+.category-subtitle,
+.project-title-en,
+.project-title-cn,
+.project-tags,
+.project-detail-title,
+.project-detail-title-cn {
+  overflow-wrap: break-word;
+}
+
+.category-filter-btn {
+  white-space: normal;
+  text-align: left;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* No fill mode on purpose: if the animation clock is frozen (background tab)
+   the element must stay fully visible rather than stick at opacity 0. */
+.is-revealing {
+  animation: fade-in 0.2s ease;
+}
+
+/* Sticky info column, switched on by js/responsive.js only when the column is
+   shorter than the viewport and the body text is the taller of the two. */
+@media (min-width: 901px) {
+  .project-detail-sidebar.is-sticky {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+  }
+}
+
+@media (max-width: 900px) {
+  .project-detail-sidebar {
+    position: static;
+  }
+}
+
+/* Show all / Show less under phone-truncated lists */
+.list-toggle {
+  margin-top: 0.85rem;
+  padding: 0.35rem 0.8rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.list-toggle:hover {
+  color: var(--color-text);
+  border-color: var(--color-muted);
+}
+
+.list-toggle:focus-visible,
+.project-detail-image.is-zoomable:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+.gallery-counter {
+  margin: 0.6rem 0 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Phone galleries scroll sideways with snap points. The track is a native
+   scroll container, so vertical page scrolling keeps working. */
+@media (max-width: 540px) {
+  .project-detail-gallery-top.is-swipe,
+  .project-detail-gallery-grid.is-swipe,
+  .project-detail-gallery-overall.is-swipe,
+  .project-detail-gallery-detail.is-swipe {
+    display: flex;
+    /* .project-detail-gallery-overall is a column flexbox by default. */
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    height: auto;
+    padding: 0 0 0.25rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .is-swipe::-webkit-scrollbar {
+    display: none;
+  }
+
+  .is-swipe > .project-detail-figure {
+    position: static !important;
+    flex: 0 0 88%;
+    width: 88% !important;
+    max-width: 88% !important;
+    min-height: 0;
+    margin-top: 0 !important;
+    scroll-snap-align: center;
+  }
+
+  .is-swipe > .project-detail-figure.is-portrait .project-detail-image {
+    max-height: 68vh;
+  }
+
+  .is-swipe:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-revealing {
+    animation: none;
+  }
+
+  /* Same compound selectors as the swipe block, otherwise it loses on specificity. */
+  .project-detail-gallery-top.is-swipe,
+  .project-detail-gallery-grid.is-swipe,
+  .project-detail-gallery-overall.is-swipe,
+  .project-detail-gallery-detail.is-swipe {
+    scroll-behavior: auto;
+  }
 }

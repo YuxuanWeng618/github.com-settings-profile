@@ -5,6 +5,7 @@
 let gallery = [];
 let currentIndex = 0;
 let lightboxEl = null;
+let lastFocused = null;
 
 function createLightbox() {
   if (lightboxEl) return lightboxEl;
@@ -36,7 +37,56 @@ function createLightbox() {
     el.addEventListener("click", closeLightbox);
   });
 
+  document.addEventListener("keydown", onKeydown);
+  bindSwipe(lightboxEl.querySelector(".lightbox-panel"));
+
   return lightboxEl;
+}
+
+/** Horizontal swipes change image; vertical ones are left to the browser. */
+function bindSwipe(panel) {
+  const SWIPE_THRESHOLD = 45;
+  let startX = 0;
+  let startY = 0;
+
+  panel.addEventListener(
+    "touchstart",
+    (event) => {
+      startX = event.touches[0].clientX;
+      startY = event.touches[0].clientY;
+    },
+    { passive: true }
+  );
+
+  panel.addEventListener(
+    "touchend",
+    (event) => {
+      if (gallery.length < 2) return;
+      const dx = event.changedTouches[0].clientX - startX;
+      const dy = event.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) < Math.abs(dy)) return;
+      step(dx < 0 ? 1 : -1);
+    },
+    { passive: true }
+  );
+}
+
+/** Keeps Tab inside the dialog while it is open. */
+function trapFocus(event) {
+  const focusable = [...lightboxEl.querySelectorAll("button")].filter((el) => !el.hidden);
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  const active = document.activeElement;
+
+  if (event.shiftKey && (active === first || !lightboxEl.contains(active))) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && active === last) {
+    event.preventDefault();
+    first.focus();
+  }
 }
 
 function renderSlide() {
@@ -68,10 +118,12 @@ function step(delta) {
 function openLightbox(items, startIndex = 0) {
   gallery = items;
   currentIndex = startIndex;
+  lastFocused = document.activeElement;
   createLightbox();
   renderSlide();
   lightboxEl.classList.add("is-open");
   document.body.classList.add("lightbox-open");
+  lightboxEl.querySelector(".lightbox-close").focus();
 }
 
 function closeLightbox() {
@@ -79,6 +131,8 @@ function closeLightbox() {
   lightboxEl.classList.remove("is-open");
   document.body.classList.remove("lightbox-open");
   lightboxEl.querySelector(".lightbox-image").src = "";
+  if (lastFocused?.isConnected) lastFocused.focus();
+  lastFocused = null;
 }
 
 function onKeydown(event) {
@@ -87,11 +141,10 @@ function onKeydown(event) {
   if (event.key === "Escape") closeLightbox();
   if (event.key === "ArrowLeft") step(-1);
   if (event.key === "ArrowRight") step(1);
+  if (event.key === "Tab") trapFocus(event);
 }
 
 export function initPreview() {
-  document.addEventListener("keydown", onKeydown);
-
   document.querySelectorAll("[data-preview]").forEach((trigger) => {
     trigger.addEventListener("click", (event) => {
       event.preventDefault();

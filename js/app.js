@@ -6,17 +6,18 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20260916h";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260916h";
+} from "./content.js?v=20260916i";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260916i";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260916h";
-import { initHoverZoom } from "./zoom.js?v=20260916h";
-import { renderDocs, bindDocs } from "./docs.js?v=20260916h";
+} from "./lang.js?v=20260916i";
+import { initHoverZoom } from "./zoom.js?v=20260916i";
+import { renderDocs, bindDocs } from "./docs.js?v=20260916i";
+import { initCollapsibleLists } from "./responsive.js?v=20260916i";
 
 function renderHeader(activePage) {
   const lang = getLang();
@@ -127,17 +128,17 @@ function renderProjects() {
   return `
     <div class="projects-container">
       <nav class="category-filters" aria-label="Project categories">
-        <button class="category-filter-btn is-active" data-filter="all" type="button">
+        <button class="category-filter-btn is-active" data-filter="all" type="button" aria-pressed="true">
           <span class="lang-en-only">All</span>
           <span class="lang-cn-only">全部</span>
           <span class="category-count">${projects.length}</span>
         </button>
-        <button class="category-filter-btn" data-filter="software" type="button">
+        <button class="category-filter-btn" data-filter="software" type="button" aria-pressed="false">
           <span class="lang-en-only">Software</span>
           <span class="lang-cn-only">软件类</span>
           <span class="category-count">${softwareProjects.length}</span>
         </button>
-        <button class="category-filter-btn" data-filter="hardware" type="button">
+        <button class="category-filter-btn" data-filter="hardware" type="button" aria-pressed="false">
           <span class="lang-en-only">Hardware</span>
           <span class="lang-cn-only">硬件类</span>
           <span class="category-count">${hardwareProjects.length}</span>
@@ -179,18 +180,34 @@ function bindCategoryFilters() {
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const filter = btn.dataset.filter;
-      buttons.forEach((b) => b.classList.remove("is-active"));
-      btn.classList.add("is-active");
+
+      // Selected state first, so the tap reads as instant even on slow devices.
+      buttons.forEach((other) => {
+        const isActive = other === btn;
+        other.classList.toggle("is-active", isActive);
+        other.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
 
       sections.forEach((sec) => {
-        if (filter === "all" || sec.dataset.category === filter) {
-          sec.style.display = "";
-        } else {
-          sec.style.display = "none";
-        }
+        const shouldShow = filter === "all" || sec.dataset.category === filter;
+        const wasHidden = sec.hidden;
+        sec.hidden = !shouldShow;
+        if (shouldShow && wasHidden) reveal(sec);
       });
     });
   });
+}
+
+function reveal(el) {
+  // A hidden tab freezes the animation clock, which would hold the section at
+  // the first keyframe until the tab is looked at again.
+  if (document.hidden) return;
+
+  el.classList.remove("is-revealing");
+  // Reading offsetWidth restarts the animation when the same element reappears.
+  void el.offsetWidth;
+  el.classList.add("is-revealing");
+  el.addEventListener("animationend", () => el.classList.remove("is-revealing"), { once: true });
 }
 
 function renderVenues(venues) {
@@ -297,11 +314,11 @@ function renderAbout() {
     <section class="about-news">
       <div class="project-detail-lang-block project-detail-lang-en">
         <h2 class="about-section-title text-en">📰 News</h2>
-        <ul class="news-list">${newsEn}</ul>
+        <ul class="news-list" id="news-list-en" data-collapse-limit="5">${newsEn}</ul>
       </div>
       <div class="project-detail-lang-block project-detail-lang-cn">
         <h2 class="about-section-title text-cn">📰 最新动态</h2>
-        <ul class="news-list">${newsCn}</ul>
+        <ul class="news-list" id="news-list-cn" data-collapse-limit="5">${newsCn}</ul>
       </div>
     </section>
 
@@ -310,7 +327,7 @@ function renderAbout() {
     <section>
       <h2 class="about-section-title lang-en-only">📖 My Recent Reading List</h2>
       <h2 class="about-section-title lang-cn-only">📖 近期阅读</h2>
-      <ul class="reading-list">${reading}</ul>
+      <ul class="reading-list" id="reading-list" data-collapse-limit="3">${reading}</ul>
     </section>
 
     ${
@@ -357,6 +374,7 @@ function init() {
       break;
     case "about":
       contentEl.innerHTML = renderAbout();
+      initCollapsibleLists();
       break;
     case "docs":
       contentEl.innerHTML = renderDocs();
