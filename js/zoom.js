@@ -9,6 +9,8 @@
 const FRAME_CLIPPED = ".project-thumb, .project-detail-figure-detail";
 const FRAME_WHOLE =
   ".publication-figure, .project-detail-figure-top, .project-detail-figure-overall";
+/** Grid covers stay subtle so neighbouring cards and captions do not shift. */
+const FRAME_COVER = ".project-thumb";
 
 /** Matches CardSpring scaleSpring */
 const STIFFNESS = 900;
@@ -16,6 +18,7 @@ const DAMPING = 30;
 /** Matches CardSpring hoverScale */
 const HOVER_SCALE = 1.15;
 const HOVER_SCALE_WHOLE = 1.15;
+const HOVER_SCALE_COVER = 1.04;
 
 const states = new WeakMap();
 let active = new Set();
@@ -47,6 +50,7 @@ function springStep(state, target, dt) {
 }
 
 function getTarget(el) {
+  if (el.matches?.(FRAME_COVER)) return HOVER_SCALE_COVER;
   const clipped = el.matches?.(FRAME_CLIPPED) || el.closest?.(FRAME_CLIPPED);
   if (clipped && clipped === el) return HOVER_SCALE;
   if (el.matches?.(FRAME_WHOLE)) return HOVER_SCALE_WHOLE;
