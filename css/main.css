@@ -1856,6 +1856,26 @@ body.lightbox-open {
   }
 }
 
+/* The overlap collage is placed on a 12-column desktop grid. Below 900px the
+   item placements are dropped, so the track itself has to leave that grid too —
+   otherwise every figure lands in a single 1/12 column and the fixed row height
+   opens a tall gap underneath. Needs the .is-overlap specificity to win. */
+@media (max-width: 900px) {
+  .project-detail-gallery-detail.is-overlap:not(.is-compact) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem 1rem;
+    padding: 0 0 1.5rem;
+  }
+
+  .project-detail-gallery-detail.is-overlap:not(.is-compact) .project-detail-figure-detail {
+    min-height: 0;
+  }
+
+  .project-detail-gallery-detail.is-overlap:not(.is-compact) .project-detail-figure-detail .project-detail-image {
+    height: auto;
+  }
+}
+
 /* Show all / Show less under phone-truncated lists */
 .list-toggle {
   margin-top: 0.85rem;
