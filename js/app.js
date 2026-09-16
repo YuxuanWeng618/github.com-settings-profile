@@ -6,16 +6,16 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20260916e";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260916e";
+} from "./content.js?v=20260916f";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260916f";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260916e";
-import { initHoverZoom } from "./zoom.js?v=20260916e";
+} from "./lang.js?v=20260916f";
+import { initHoverZoom } from "./zoom.js?v=20260916f";
 
 function renderHeader(activePage) {
   const lang = getLang();
@@ -131,29 +131,17 @@ function renderProjects() {
           <span class="lang-cn-only">全部</span>
           <span class="category-count">${projects.length}</span>
         </button>
-        <button class="category-filter-btn" data-filter="hardware" type="button">
-          <span class="lang-en-only">Hardware</span>
-          <span class="lang-cn-only">硬件类</span>
-          <span class="category-count">${hardwareProjects.length}</span>
-        </button>
         <button class="category-filter-btn" data-filter="software" type="button">
           <span class="lang-en-only">Software</span>
           <span class="lang-cn-only">软件类</span>
           <span class="category-count">${softwareProjects.length}</span>
         </button>
+        <button class="category-filter-btn" data-filter="hardware" type="button">
+          <span class="lang-en-only">Hardware</span>
+          <span class="lang-cn-only">硬件类</span>
+          <span class="category-count">${hardwareProjects.length}</span>
+        </button>
       </nav>
-
-      <section class="project-category-section" data-category="hardware">
-        <div class="category-header">
-          <h2 class="category-title">
-            <span class="category-title-en">Hardware</span>
-            <span class="category-title-cn">硬件类</span>
-          </h2>
-          <span class="category-subtitle lang-en-only">Physical Computing &amp; Interactive Installations</span>
-          <span class="category-subtitle lang-cn-only">实体计算与交互装置</span>
-        </div>
-        <ul class="project-grid">${hardwareProjects.map(renderProjectCard).join("")}</ul>
-      </section>
 
       <section class="project-category-section" data-category="software">
         <div class="category-header">
@@ -165,6 +153,18 @@ function renderProjects() {
           <span class="category-subtitle lang-cn-only">虚拟现实、游戏与数字系统</span>
         </div>
         <ul class="project-grid">${softwareProjects.map(renderProjectCard).join("")}</ul>
+      </section>
+
+      <section class="project-category-section" data-category="hardware">
+        <div class="category-header">
+          <h2 class="category-title">
+            <span class="category-title-en">Hardware</span>
+            <span class="category-title-cn">硬件类</span>
+          </h2>
+          <span class="category-subtitle lang-en-only">Physical Computing &amp; Interactive Installations</span>
+          <span class="category-subtitle lang-cn-only">实体计算与交互装置</span>
+        </div>
+        <ul class="project-grid">${hardwareProjects.map(renderProjectCard).join("")}</ul>
       </section>
     </div>
   `;
