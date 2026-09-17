@@ -232,6 +232,13 @@ export const projects = [
         cn: "单个 1500mm × 700 × 800 mm；整体尺寸可变",
       },
       video: "https://www.youtube.com/watch?v=bb_NvH12CKs",
+      links: [
+        {
+          labelEn: "Paper (arXiv)",
+          labelCn: "论文（arXiv）",
+          href: "https://arxiv.org/abs/2609.16687",
+        },
+      ],
       detailLayout: "overlap",
       detailGallery: [
         "assets/projects/nephocodex/gallery/pic1.jpg",
@@ -678,8 +685,11 @@ export const publications = [
   {
     venues: [{ label: "CHI 2027" }],
     title: "NephoCodex: Exploring Bounded Material Agency in Weather Data Physicalization",
-    authors: [{ name: "Yuxuan Weng", highlight: true }, { name: "et al." }],
-    links: [{ label: "Project", href: "project.html?slug=nephocodex" }],
+    authors: [{ name: "Yuxuan Weng", highlight: true }, { name: "Yunge Wen" }],
+    links: [
+      { label: "Paper (arXiv)", href: "https://arxiv.org/abs/2609.16687" },
+      { label: "Project", href: "project.html?slug=nephocodex" },
+    ],
     status: "Under review",
     image: "assets/projects/nephocodex/cover.webp",
   },
