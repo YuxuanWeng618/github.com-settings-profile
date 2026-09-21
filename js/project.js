@@ -4,7 +4,7 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20260917a";
+} from "./content.js?v=20260921shadowdemo";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260917a";
 import {
   getLang,
