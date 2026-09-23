@@ -77,6 +77,11 @@ export const projects = [
       },
       links: [
         {
+          labelEn: "Paper (arXiv)",
+          labelCn: "论文（arXiv）",
+          href: "https://arxiv.org/abs/2609.22993",
+        },
+        {
           labelEn: "Play Demo",
           labelCn: "在线试玩",
           href: "http://206.189.94.143.sslip.io",
@@ -374,6 +379,14 @@ export const projects = [
         cn: "可变",
       },
       video: "https://www.youtube.com/watch?v=vl7J3vrWFzA&t=49s",
+      demo: {
+        labelEn: "Download Windows VR Demo",
+        labelCn: "下载 Windows VR Demo",
+        href: "https://github.com/YuxuanWeng618/github.com-settings-profile/releases/download/shadowgestures-demo-20260921/ShadowGestures-Windows-VR-Demo.zip",
+        download: false,
+        noteEn: "Windows 64-bit · 1.58 GB ZIP · VR headset and controllers required. Extract the full ZIP, connect your headset through an OpenXR runtime, then launch ShadowGestures.exe.",
+        noteCn: "Windows 64 位 · ZIP 约 1.58 GB · 需要 VR 头显及手柄。完整解压 ZIP，连接头显并配置 OpenXR 运行环境后，启动 ShadowGestures.exe。",
+      },
       overallGallery: [
         "assets/projects/shadowgesture/gallery/pic5.png",
         "assets/projects/shadowgesture/gallery/fig1.png",
@@ -674,8 +687,18 @@ export const publications = [
     venues: [{ label: "CHI 2027" }],
     title:
       "Adaptive Scaffolding Needs Contingency: An AI Tutor That Escalates and Fades on What the Learner Does",
-    authors: [{ name: "Yuxuan Weng", highlight: true }, { name: "et al." }],
+    authors: [
+      { name: "Xinmeng Hou" },
+      { name: "Yuxuan Weng", highlight: true },
+      { name: "Chin Hsien Yeh" },
+      { name: "Ding Lin Lee" },
+      { name: "Lishan Zheng" },
+      { name: "Fang Li" },
+      { name: "Wuqi Wang" },
+      { name: "Yang Liu" },
+    ],
     links: [
+      { label: "Paper (arXiv)", href: "https://arxiv.org/abs/2609.22993" },
       { label: "Project", href: "project.html?slug=comet" },
       { label: "Play Demo", href: "http://206.189.94.143.sslip.io" },
     ],

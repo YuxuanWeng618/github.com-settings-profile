@@ -4,21 +4,21 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20260917a";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260917a";
+} from "./content.js?v=20260921shadowdemo";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924a";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260917a";
-import { initHoverZoom } from "./zoom.js?v=20260917a";
+} from "./lang.js?v=20260924a";
+import { initHoverZoom } from "./zoom.js?v=20260924a";
 import {
   initStickySidebar,
   initPhoneGalleries,
   initDetailImageZoom,
-} from "./responsive.js?v=20260917a";
+} from "./responsive.js?v=20260924a";
 
 function renderHeader(activePage) {
   const lang = getLang();
