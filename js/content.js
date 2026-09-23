@@ -77,6 +77,11 @@ export const projects = [
       },
       links: [
         {
+          labelEn: "Paper (arXiv)",
+          labelCn: "论文（arXiv）",
+          href: "https://arxiv.org/abs/2609.22993",
+        },
+        {
           labelEn: "Play Demo",
           labelCn: "在线试玩",
           href: "http://206.189.94.143.sslip.io",
@@ -682,8 +687,18 @@ export const publications = [
     venues: [{ label: "CHI 2027" }],
     title:
       "Adaptive Scaffolding Needs Contingency: An AI Tutor That Escalates and Fades on What the Learner Does",
-    authors: [{ name: "Yuxuan Weng", highlight: true }, { name: "et al." }],
+    authors: [
+      { name: "Xinmeng Hou" },
+      { name: "Yuxuan Weng", highlight: true },
+      { name: "Chin Hsien Yeh" },
+      { name: "Ding Lin Lee" },
+      { name: "Lishan Zheng" },
+      { name: "Fang Li" },
+      { name: "Wuqi Wang" },
+      { name: "Yang Liu" },
+    ],
     links: [
+      { label: "Paper (arXiv)", href: "https://arxiv.org/abs/2609.22993" },
       { label: "Project", href: "project.html?slug=comet" },
       { label: "Play Demo", href: "http://206.189.94.143.sslip.io" },
     ],
