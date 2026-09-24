@@ -7,8 +7,8 @@
  * language flips because the two languages have different text lengths.
  */
 
-import { getLang } from "./lang.js?v=20260924c";
-import { openLightbox } from "./preview.js?v=20260924c";
+import { getLang } from "./lang.js?v=20260924d";
+import { openLightbox } from "./preview.js?v=20260924d";
 
 const PHONE = "(max-width: 540px)";
 const DESKTOP = "(min-width: 901px)";

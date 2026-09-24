@@ -5,20 +5,20 @@ import {
   getProjectBySlug,
   getProjectNeighbors,
 } from "./content.js?v=20260921shadowdemo";
-import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924c";
+import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
   renderLangToggle,
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260924c";
-import { initHoverZoom } from "./zoom.js?v=20260924c";
+} from "./lang.js?v=20260924d";
+import { initHoverZoom } from "./zoom.js?v=20260924d";
 import {
   initStickySidebar,
   initPhoneGalleries,
   initDetailImageZoom,
-} from "./responsive.js?v=20260924c";
+} from "./responsive.js?v=20260924d";
 
 function renderHeader(activePage) {
   const lang = getLang();

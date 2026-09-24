@@ -1,5 +1,5 @@
 // See js/lang.js for why every import specifier carries the same ?v= token.
-import { protectedDocs } from "./content.js?v=20260924c";
+import { protectedDocs } from "./content.js?v=20260924d";
 
 const PBKDF2_ITERATIONS = 250000;
 const MAGIC = "CDOC1\0";
