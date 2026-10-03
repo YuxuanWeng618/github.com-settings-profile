@@ -1553,8 +1553,8 @@ body.lightbox-open {
   }
 
   /* Clipped frames magnify the image inside its existing crop.
-     Scale motion is driven by js/zoom.js spring (CardSpring: stiffness 900,
-     damping 30, hoverScale 1.15). CSS only handles the no-JS fallback. */
+     Scale motion is driven by js/zoom.js. Detail galleries use a restrained
+     1.04 scale and damped spring. CSS only handles the no-JS fallback. */
   .project-thumb .project-image,
   .project-detail-figure-detail .project-detail-image {
     transform-origin: center center;
@@ -1571,7 +1571,7 @@ body.lightbox-open {
   }
 
   html:not(.js-spring-zoom) .project-detail-figure-detail:hover .project-detail-image {
-    transform: scale(1.15);
+    transform: scale(1.04);
   }
 
   /* Unclipped figures scale as a whole and lift above their neighbours. */
@@ -1600,6 +1600,11 @@ body.lightbox-open {
     position: relative;
     z-index: 20;
     transform: scale(1.08);
+  }
+
+  html:not(.js-spring-zoom) .project-detail-figure-top:hover,
+  html:not(.js-spring-zoom) .project-detail-figure-overall:hover {
+    transform: scale(1.04);
   }
 }
 
