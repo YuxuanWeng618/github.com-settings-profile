@@ -13,7 +13,7 @@ import {
   initLang,
   updateHeaderContent,
 } from "./lang.js?v=20260924d";
-import { initHoverZoom } from "./zoom.js?v=20261004motion";
+import { initHoverZoom } from "./zoom.js?v=20261004allprojects";
 import {
   initStickySidebar,
   initPhoneGalleries,

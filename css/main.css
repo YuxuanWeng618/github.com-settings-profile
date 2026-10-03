@@ -1609,6 +1609,19 @@ body.lightbox-open {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Match the fallback selectors so reduced motion also disables CSS zoom. */
+  html:not(.js-spring-zoom) .project-detail-figure-detail .project-detail-image,
+  html:not(.js-spring-zoom) .project-detail-figure-top,
+  html:not(.js-spring-zoom) .project-detail-figure-overall {
+    transition: none;
+  }
+
+  html:not(.js-spring-zoom) .project-detail-figure-detail:hover .project-detail-image,
+  html:not(.js-spring-zoom) .project-detail-figure-top:hover,
+  html:not(.js-spring-zoom) .project-detail-figure-overall:hover {
+    transform: none;
+  }
+
   .project-thumb .project-image,
   .project-detail-figure-detail .project-detail-image,
   .publication-figure,
