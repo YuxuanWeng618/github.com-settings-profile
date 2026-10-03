@@ -1,7 +1,6 @@
 /**
- * Hover magnify with a spring curve matching CardSpring.cs:
- *   scaleSpring { stiffness: 900, damping: 30 }
- *   hoverScale  1.15
+ * Hover magnify with a spring curve. Project detail images use a smaller
+ * scale and a softer, more damped spring to keep gallery motion restrained.
  *
  * Transform-origin follows the cursor so clipped frames magnify under the pointer.
  */
@@ -11,6 +10,8 @@ const FRAME_WHOLE =
   ".publication-figure, .project-detail-figure-top, .project-detail-figure-overall";
 /** Grid covers stay subtle so neighbouring cards and captions do not shift. */
 const FRAME_COVER = ".project-thumb";
+const FRAME_DETAIL =
+  ".project-detail-figure-detail, .project-detail-figure-top, .project-detail-figure-overall";
 
 /** Matches CardSpring scaleSpring */
 const STIFFNESS = 900;
@@ -19,6 +20,9 @@ const DAMPING = 30;
 const HOVER_SCALE = 1.15;
 const HOVER_SCALE_WHOLE = 1.15;
 const HOVER_SCALE_COVER = 1.04;
+const DETAIL_HOVER_SCALE = 1.04;
+const DETAIL_STIFFNESS = 500;
+const DETAIL_DAMPING = 36;
 
 const states = new WeakMap();
 let active = new Set();
@@ -33,7 +37,7 @@ function clampOrigin(value) {
 function springStep(state, target, dt) {
   // Classic spring-damper used by Unity-style CardSpring.Step:
   // force = (target - value) * stiffness - velocity * damping
-  const force = (target - state.value) * STIFFNESS - state.velocity * DAMPING;
+  const force = (target - state.value) * state.stiffness - state.velocity * state.damping;
   state.velocity += force * dt;
   state.value += state.velocity * dt;
 
@@ -50,6 +54,7 @@ function springStep(state, target, dt) {
 }
 
 function getTarget(el) {
+  if (el.matches?.(FRAME_DETAIL)) return DETAIL_HOVER_SCALE;
   if (el.matches?.(FRAME_COVER)) return HOVER_SCALE_COVER;
   const clipped = el.matches?.(FRAME_CLIPPED) || el.closest?.(FRAME_CLIPPED);
   if (clipped && clipped === el) return HOVER_SCALE;
@@ -70,6 +75,8 @@ function ensureState(frame) {
 
   state = {
     frame,
+    stiffness: frame.matches(FRAME_DETAIL) ? DETAIL_STIFFNESS : STIFFNESS,
+    damping: frame.matches(FRAME_DETAIL) ? DETAIL_DAMPING : DAMPING,
     image: null,
     value: 1,
     velocity: 0,
