@@ -4,7 +4,7 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20261004rhymarc-light";
+} from "./content.js?v=20261004rhymarc-lines-v2";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
