@@ -224,6 +224,23 @@ main {
   margin: 0 auto;
 }
 
+/* Animate the rendered main content as one block, once per page load. */
+#page-content:not(:empty) {
+  animation: page-fade-in-up 1s ease both;
+}
+
+@keyframes page-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .page-title {
   font-size: 1rem;
   font-weight: 400;
@@ -1982,6 +1999,7 @@ body.lightbox-open {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  #page-content:not(:empty),
   .is-revealing {
     animation: none;
   }
