@@ -74,6 +74,14 @@ export const projects = [
         labelCn: "在线试玩",
         href: "http://206.189.94.143.sslip.io",
         download: false,
+        additionalButtons: [
+          {
+            labelEn: "Comet 2.0 Play Demo",
+            labelCn: "Comet 2.0 在线试玩",
+            href: "https://comet.ccds.ntu.edu.sg/login",
+            download: false,
+          },
+        ],
       },
       links: [
         {
@@ -85,11 +93,6 @@ export const projects = [
           labelEn: "Play Demo",
           labelCn: "在线试玩",
           href: "http://206.189.94.143.sslip.io",
-        },
-        {
-          labelEn: "Comet 2.0 Interface Upgrade",
-          labelCn: "Comet 2.0 界面升级",
-          href: "https://comet.ccds.ntu.edu.sg/login",
         },
         {
           labelEn: "Technical Documentation (password)",
