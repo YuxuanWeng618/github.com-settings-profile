@@ -87,6 +87,11 @@ export const projects = [
           href: "http://206.189.94.143.sslip.io",
         },
         {
+          labelEn: "Comet 2.0 Interface Upgrade",
+          labelCn: "Comet 2.0 界面升级",
+          href: "https://comet.ccds.ntu.edu.sg/login",
+        },
+        {
           labelEn: "Technical Documentation (password)",
           labelCn: "技术说明文档（需密码）",
           href: "docs.html?doc=comet",
