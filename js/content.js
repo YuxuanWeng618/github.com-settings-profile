@@ -90,11 +90,6 @@ export const projects = [
           href: "https://arxiv.org/abs/2609.22993",
         },
         {
-          labelEn: "Play Demo",
-          labelCn: "在线试玩",
-          href: "http://206.189.94.143.sslip.io",
-        },
-        {
           labelEn: "Technical Documentation (password)",
           labelCn: "技术说明文档（需密码）",
           href: "docs.html?doc=comet",

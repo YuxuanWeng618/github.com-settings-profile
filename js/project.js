@@ -4,7 +4,7 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20261103comet-buttons-v2";
+} from "./content.js?v=20261103comet-buttons-v3";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
