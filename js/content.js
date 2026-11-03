@@ -76,8 +76,8 @@ export const projects = [
         download: false,
         additionalButtons: [
           {
-            labelEn: "Comet 2.0 Play Demo",
-            labelCn: "Comet 2.0 在线试玩",
+            labelEn: "2.0 Play Demo",
+            labelCn: "2.0 在线试玩",
             href: "https://comet.ccds.ntu.edu.sg/login",
             download: false,
           },
