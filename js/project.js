@@ -4,7 +4,7 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20261103comet2-live";
+} from "./content.js?v=20261103comet-buttons-v1";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -219,6 +219,22 @@ function renderLinks(links) {
   `;
 }
 
+function renderDemoButton(demo, lang) {
+  const downloadAttr = demo.download !== false ? " download" : "";
+  const externalAttr =
+    demo.download === false && /^https?:\/\//i.test(demo.href)
+      ? ' target="_blank" rel="noopener noreferrer"'
+      : "";
+  const label = lang === "cn" ? demo.labelCn || "运行 Demo" : demo.labelEn || "Play Demo";
+  const cnClass = lang === "cn" ? " project-detail-demo-link-cn" : "";
+
+  return `
+    <a class="project-detail-demo-link${cnClass}" href="${demo.href}"${downloadAttr}${externalAttr}>
+      <span class="text-${lang}">${label}</span>
+    </a>
+  `;
+}
+
 function renderDemo(demo) {
   if (!demo?.href) return "";
 
@@ -245,26 +261,20 @@ function renderDemo(demo) {
     `;
   }
 
-  const downloadAttr = demo.download !== false ? " download" : "";
-  const externalAttr =
-    demo.download === false && /^https?:\/\//i.test(demo.href)
-      ? ' target="_blank" rel="noopener noreferrer"'
-      : "";
-  const enLabel = demo.labelEn || "Play Demo";
-  const cnLabel = demo.labelCn || "运行 Demo";
+  const buttons = [demo, ...(demo.additionalButtons || [])];
 
   return `
     <div class="project-detail-demo">
       <div class="project-detail-lang-block project-detail-lang-en">
-        <a class="project-detail-demo-link" href="${demo.href}"${downloadAttr}${externalAttr}>
-          <span class="text-en">${enLabel}</span>
-        </a>
+        <div class="project-detail-demo-actions">
+          ${buttons.map((button) => renderDemoButton(button, "en")).join("")}
+        </div>
         ${demo.noteEn ? `<p class="text-en project-detail-demo-note">${demo.noteEn}</p>` : ""}
       </div>
       <div class="project-detail-lang-block project-detail-lang-cn">
-        <a class="project-detail-demo-link project-detail-demo-link-cn" href="${demo.href}"${downloadAttr}${externalAttr}>
-          <span class="text-cn">${cnLabel}</span>
-        </a>
+        <div class="project-detail-demo-actions">
+          ${buttons.map((button) => renderDemoButton(button, "cn")).join("")}
+        </div>
         ${demo.noteCn ? `<p class="text-cn project-detail-demo-note">${demo.noteCn}</p>` : ""}
       </div>
     </div>

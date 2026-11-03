@@ -1027,6 +1027,13 @@ body.lightbox-open {
   margin: 0 0 1.5rem;
 }
 
+.project-detail-demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .project-detail-demo-link {
   display: inline-block;
   font-family: var(--font-sans);
