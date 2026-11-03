@@ -226,7 +226,7 @@ main {
 
 /* Animate the rendered main content as one block, once per page load. */
 #page-content:not(:empty) {
-  animation: page-fade-in-up 1s ease both;
+  animation: page-fade-in-up 1.8s ease both;
 }
 
 @keyframes page-fade-in-up {
