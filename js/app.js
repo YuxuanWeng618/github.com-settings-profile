@@ -6,7 +6,7 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20261110chimera-first";
+} from "./content.js?v=20261110chimera-gif";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -108,6 +108,7 @@ function renderProjectCard(project) {
                 src="${project.cover}"
                 alt="${lang === "cn" ? project.titleCn : project.titleEn}"
                 loading="lazy"
+                ${project.coverPosition ? `style="object-position: ${project.coverPosition}"` : ""}
               />
             </a>
           `
