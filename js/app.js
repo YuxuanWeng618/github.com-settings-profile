@@ -6,7 +6,7 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20261110chimera";
+} from "./content.js?v=20261110chimera-text";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -95,18 +95,24 @@ function renderProjectCard(project) {
 
   return `
     <li class="project-card">
-      <a
-        class="project-thumb"
-        href="${project.href}"
-        aria-label="${detailLabel}"
-      >
-        <img
-          class="project-image"
-          src="${project.cover}"
-          alt="${lang === "cn" ? project.titleCn : project.titleEn}"
-          loading="lazy"
-        />
-      </a>
+      ${
+        project.cover
+          ? `
+            <a
+              class="project-thumb"
+              href="${project.href}"
+              aria-label="${detailLabel}"
+            >
+              <img
+                class="project-image"
+                src="${project.cover}"
+                alt="${lang === "cn" ? project.titleCn : project.titleEn}"
+                loading="lazy"
+              />
+            </a>
+          `
+          : ""
+      }
       <div class="project-meta">
         <a class="project-title-en" href="${project.href}">${project.titleEn}</a>
         <a class="project-title-cn" href="${project.href}">${project.titleCn}</a>
