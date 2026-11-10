@@ -44,6 +44,8 @@ export const projects = [
     titleEn: "CHIMERA",
     titleCn: "奇美拉",
     category: "software",
+    cover: "assets/projects/chimera/chimera-title-card.gif?v=20261110chimera-gif",
+    coverPosition: "left center",
     tagsEn: ["Action Roguelike", "Top-down Combat", "Body Modification", "Procedural Levels"],
     tagsCn: ["动作Roguelike", "俯视角战斗", "身体改造", "程序化关卡"],
     href: "project.html?slug=chimera",
