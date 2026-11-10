@@ -6,7 +6,7 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20261110chimera-text";
+} from "./content.js?v=20261110chimera-first";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
