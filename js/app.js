@@ -6,7 +6,7 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20261110chimera-gif";
+} from "./content.js?v=20261110chimera-demo";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -84,11 +84,13 @@ function renderProjectCard(project) {
     /^https?:\/\//i.test(demo.href)
       ? demo.href
       : "";
+  const playLabelEn = (demo?.useLabelsOnHome && demo.labelEn) || "Play Demo";
+  const playLabelCn = (demo?.useLabelsOnHome && demo.labelCn) || "在线试玩";
   const playLink = playHref
     ? `<p class="project-play-link">
         <a href="${playHref}" target="_blank" rel="noopener noreferrer">
-          <span class="lang-en-only">Play Demo</span>
-          <span class="lang-cn-only">在线试玩</span>
+          <span class="lang-en-only">${playLabelEn}</span>
+          <span class="lang-cn-only">${playLabelCn}</span>
         </a>
       </p>`
     : "";
