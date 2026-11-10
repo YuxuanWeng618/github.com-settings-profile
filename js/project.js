@@ -4,7 +4,7 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20261103comet-buttons-v3";
+} from "./content.js?v=20261110chimera";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -308,18 +308,29 @@ function renderGallery(detail) {
   const parts = [];
 
   if (detail.video) {
-    const embedUrl = toVideoEmbedUrl(detail.video);
-    parts.push(`
-      <figure class="project-detail-figure project-detail-video">
-        <div class="video-embed">
+    const player = detail.video.endsWith(".mp4")
+      ? `
+          <video
+            src="${detail.video}"
+            ${detail.videoPoster ? `poster="${detail.videoPoster}"` : ""}
+            controls
+            playsinline
+            preload="none"
+            aria-label="Gameplay video"
+          ></video>
+        `
+      : `
           <iframe
-            src="${embedUrl}"
+            src="${toVideoEmbedUrl(detail.video)}"
             title="Project video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
             allowfullscreen
             loading="lazy"
           ></iframe>
-        </div>
+        `;
+    parts.push(`
+      <figure class="project-detail-figure project-detail-video">
+        <div class="video-embed">${player}</div>
       </figure>
     `);
   }
