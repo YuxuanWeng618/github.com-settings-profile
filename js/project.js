@@ -4,7 +4,7 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20261110chimera-demo";
+} from "./content.js?v=20261110ppo-other";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
