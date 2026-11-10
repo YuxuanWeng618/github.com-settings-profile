@@ -40,6 +40,32 @@ export const categories = [
 
 export const projects = [
   {
+    slug: "chimera",
+    titleEn: "CHIMERA",
+    titleCn: "奇美拉",
+    category: "software",
+    tagsEn: ["Action Roguelike", "Top-down Combat", "Body Modification", "Procedural Levels"],
+    tagsCn: ["动作Roguelike", "俯视角战斗", "身体改造", "程序化关卡"],
+    href: "project.html?slug=chimera",
+    detail: {
+      meta: [
+        { en: "Team Project", cn: "团队项目" },
+        { en: "Academic Project", cn: "学术项目" },
+        { en: "Fall 2026", cn: "2026秋季" },
+      ],
+      bodyEn:
+        "CHIMERA is a top-down action roguelike built in Unreal Engine 5. Body modification connects real-time combat with progression within a run. A thousand years ago, five animal clans joined forces to seal away the Chimera. After robots took over the world and drove the clans to the brink of extinction, they placed their hopes in the reborn young Chimera. Players guide it into a robotic facility, using dual-blade combos, dodges, and a tether blade to handle waves of enemies.\n\nInfection is the core progression mechanic. After clearing a combat room, players choose one of three infection abilities to modify the head, upper limbs, back, lower limbs, or tail. Choosing the same body part again upgrades its ability, and some modifications also change the character’s appearance. Each infection changes how players approach the next fight. Fire bursts reward timing a concentrated attack, while spreading poison rewards catching enemies in clusters.\n\nEach run generates branching routes with shops, treasure chests, and rest stops. Based on remaining health, gold, and their current build, players decide whether to fight for a new infection or head for supplies. When health runs out, the abilities and resources gained during the run reset. In the next run, players plan their route and build around the rooms and rewards they encounter.",
+      bodyCn:
+        "《奇美拉》（CHIMERA）是一款基于 Unreal Engine 5 开发的俯视角动作 Roguelike 游戏，以身体改造连接即时战斗与单局成长。千年前，五个动物族群联手封印了奇美拉。机器人统治世界后，濒临灭绝的五族将希望寄托在重生的小奇美拉身上。玩家操控它深入机械设施，运用双刃连击、闪避与绳刃牵引应对接连出现的敌人。\n\n「侵染」是游戏的核心成长机制。清空战斗房间后，玩家可以从三项侵染能力中选择一项，改造头部、上肢、背部、下肢或尾部。再次选择同一部位可提升其能力等级，部分改造也会直接体现在角色外观上。不同侵染会改变玩家在下一场战斗中的选择。火焰爆发要求玩家抓住集中输出的时机，毒素扩散则鼓励玩家利用敌群聚集的位置。\n\n每局随机生成的分岔路线还设有商店、宝箱与休息节点。玩家需要根据剩余生命、持有金币和当前的能力组合，决定是继续迎战以获得新的侵染，还是转向补给节点。生命耗尽后，本局获得的能力与资源随之重置。新一局中，玩家需要根据遇到的房间与奖励重新规划路线和能力组合。",
+      materials: {
+        labelEn: "Keywords",
+        labelCn: "关键词",
+        en: "Action Roguelike, Run-based Builds, Body Modification, Procedural Level Generation",
+        cn: "动作 Roguelike、局内构筑、身体改造、程序化关卡生成",
+      },
+    },
+  },
+  {
     slug: "comet",
     titleEn: "CoMeT",
     titleCn: "CoMeT：随学习者回应调整的 AI 编程导师",
@@ -668,32 +694,6 @@ export const projects = [
         "assets/projects/my-naked-soul/gallery/pic11.png",
         "assets/projects/my-naked-soul/gallery/pic15.png",
       ],
-    },
-  },
-  {
-    slug: "chimera",
-    titleEn: "CHIMERA",
-    titleCn: "奇美拉",
-    category: "software",
-    tagsEn: ["Action Roguelike", "Top-down Combat", "Body Modification", "Procedural Levels"],
-    tagsCn: ["动作Roguelike", "俯视角战斗", "身体改造", "程序化关卡"],
-    href: "project.html?slug=chimera",
-    detail: {
-      meta: [
-        { en: "Team Project", cn: "团队项目" },
-        { en: "Academic Project", cn: "学术项目" },
-        { en: "Fall 2026", cn: "2026秋季" },
-      ],
-      bodyEn:
-        "CHIMERA is a top-down action roguelike built in Unreal Engine 5. Body modification connects real-time combat with progression within a run. A thousand years ago, five animal clans joined forces to seal away the Chimera. After robots took over the world and drove the clans to the brink of extinction, they placed their hopes in the reborn young Chimera. Players guide it into a robotic facility, using dual-blade combos, dodges, and a tether blade to handle waves of enemies.\n\nInfection is the core progression mechanic. After clearing a combat room, players choose one of three infection abilities to modify the head, upper limbs, back, lower limbs, or tail. Choosing the same body part again upgrades its ability, and some modifications also change the character’s appearance. Each infection changes how players approach the next fight. Fire bursts reward timing a concentrated attack, while spreading poison rewards catching enemies in clusters.\n\nEach run generates branching routes with shops, treasure chests, and rest stops. Based on remaining health, gold, and their current build, players decide whether to fight for a new infection or head for supplies. When health runs out, the abilities and resources gained during the run reset. In the next run, players plan their route and build around the rooms and rewards they encounter.",
-      bodyCn:
-        "《奇美拉》（CHIMERA）是一款基于 Unreal Engine 5 开发的俯视角动作 Roguelike 游戏，以身体改造连接即时战斗与单局成长。千年前，五个动物族群联手封印了奇美拉。机器人统治世界后，濒临灭绝的五族将希望寄托在重生的小奇美拉身上。玩家操控它深入机械设施，运用双刃连击、闪避与绳刃牵引应对接连出现的敌人。\n\n「侵染」是游戏的核心成长机制。清空战斗房间后，玩家可以从三项侵染能力中选择一项，改造头部、上肢、背部、下肢或尾部。再次选择同一部位可提升其能力等级，部分改造也会直接体现在角色外观上。不同侵染会改变玩家在下一场战斗中的选择。火焰爆发要求玩家抓住集中输出的时机，毒素扩散则鼓励玩家利用敌群聚集的位置。\n\n每局随机生成的分岔路线还设有商店、宝箱与休息节点。玩家需要根据剩余生命、持有金币和当前的能力组合，决定是继续迎战以获得新的侵染，还是转向补给节点。生命耗尽后，本局获得的能力与资源随之重置。新一局中，玩家需要根据遇到的房间与奖励重新规划路线和能力组合。",
-      materials: {
-        labelEn: "Keywords",
-        labelCn: "关键词",
-        en: "Action Roguelike, Run-based Builds, Body Modification, Procedural Level Generation",
-        cn: "动作 Roguelike、局内构筑、身体改造、程序化关卡生成",
-      },
     },
   },
 ];
