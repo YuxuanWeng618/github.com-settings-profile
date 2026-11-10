@@ -994,7 +994,8 @@ body.lightbox-open {
   background: #111;
 }
 
-.project-detail-video iframe {
+.project-detail-video iframe,
+.project-detail-video video {
   position: absolute;
   inset: 0;
   width: 100%;
