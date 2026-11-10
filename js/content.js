@@ -50,6 +50,15 @@ export const projects = [
     tagsCn: ["动作Roguelike", "俯视角战斗", "身体改造", "程序化关卡"],
     href: "project.html?slug=chimera",
     detail: {
+      demo: {
+        labelEn: "Download Windows Demo",
+        labelCn: "下载 Windows 试玩版",
+        href: "https://1drv.ms/u/c/0e9828ae7bb8ccff/IQDY_gGZCuhFQ5knqnORIr7dASYjRuTDOxwfv1czlX08e6c",
+        download: false,
+        useLabelsOnHome: true,
+        noteEn: "Windows 64-bit · 2.38 GB. Select Download on OneDrive, then run the EXE. It extracts automatically on first launch.",
+        noteCn: "Windows 64 位 · 2.38 GB。在 OneDrive 页面点击「下载」，再双击 EXE。首次运行会自动解包。",
+      },
       meta: [
         { en: "Team Project", cn: "团队项目" },
         { en: "Academic Project", cn: "学术项目" },
