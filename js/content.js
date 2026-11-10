@@ -23,18 +23,25 @@ export const nav = [
 
 export const categories = [
   {
-    id: "hardware",
-    labelEn: "Hardware",
-    labelCn: "硬件类",
-    subtitleEn: "Physical Computing & Interactive Installations",
-    subtitleCn: "实体计算与交互装置",
-  },
-  {
     id: "software",
     labelEn: "Software",
     labelCn: "软件类",
-    subtitleEn: "VR, Games & Digital Systems",
+    subtitleEn: "VR, Games &amp; Digital Systems",
     subtitleCn: "虚拟现实、游戏与数字系统",
+  },
+  {
+    id: "hardware",
+    labelEn: "Hardware",
+    labelCn: "硬件类",
+    subtitleEn: "Physical Computing &amp; Interactive Installations",
+    subtitleCn: "实体计算与交互装置",
+  },
+  {
+    id: "other-works",
+    labelEn: "Other Works",
+    labelCn: "其他作品",
+    subtitleEn: "Experiments &amp; Studies",
+    subtitleCn: "实验与研究",
   },
 ];
 
@@ -705,6 +712,36 @@ export const projects = [
         "assets/projects/my-naked-soul/gallery/pic11.png",
         "assets/projects/my-naked-soul/gallery/pic15.png",
       ],
+    },
+  },
+  {
+    slug: "ppo",
+    titleEn: "PPO Hyperparameter Tuning and Policy Evaluation in Unity",
+    titleCn: "Unity 游戏智能体的 PPO 超参数调优与策略评估",
+    category: "other-works",
+    cover: "assets/projects/PPO/cover.webp",
+    tagsEn: ["Game AI","Reinforcement Learning","Unity"],
+    tagsCn: ["游戏人工智能","强化学习","Unity"],
+    href: "project.html?slug=ppo",
+    detail: {
+      meta: [
+        { en: "Team Project", cn: "团队项目" },
+        { en: "Fall 2026", cn: "2026 秋季" },
+      ],
+      materials: {
+        labelEn: "Medium",
+        labelCn: "媒介与形式",
+        en: "Unity simulation, ML-Agents",
+        cn: "Unity 对抗仿真、ML-Agents",
+      },
+      overview: {
+        en: "A Unity study of how batch size, network width, and learning rate affect a rolling-ball agent against three rule-based opponents.",
+        cn: "在 Unity 滚球对抗中，研究批大小、网络宽度和学习率如何影响智能体面对三种规则对手时的表现。",
+      },
+      bodyEn:
+        "How does a rolling-ball agent learn to push an opponent off a platform while staying on it? This project uses Proximal Policy Optimization (PPO) to train agents against three opponents in Unity. The Simple opponent holds the centre, the Medium opponent circles it, and the Hard opponent moves back and forth along an axis.\n\nWe established a baseline for each mode and varied one training parameter at a time while keeping the game rules and rewards fixed. Match outcomes and timeouts guided policy selection. Gameplay recordings helped us examine how the agents won and how they lost.\n\nIn <strong>Simple</strong>, reducing batch size from <strong>1,024 to 256</strong> raised wins from <strong>933 to 977 out of 1,000</strong>. Widening each hidden layer from <strong>128 to 256 units</strong> then brought the final policy to <strong>1,000 wins</strong>. In <strong>Medium</strong>, with 256 units per layer, increasing the learning rate from <strong>0.0003 to 0.001</strong> raised screening wins from <strong>18 to 26 out of 30</strong>. The selected policy won <strong>47 of 50</strong> games on a fresh set of matched starts, with no timeouts. In <strong>Hard</strong>, a learning rate starting at <strong>0.0035</strong> and decaying linearly yielded <strong>92 wins out of 100</strong>. Keeping the same learning rate constant produced higher training reward and <strong>89 wins</strong>. Evaluation conditions differed across modes, so these results informed policy selection within each mode.",
+      bodyCn:
+        "一个滚球智能体如何学会把对手推下平台，同时让自己留在场上？本项目在 Unity 中使用近端策略优化（PPO）训练智能体。Simple 对手守在场地中央，Medium 对手绕中心移动，Hard 对手沿固定轴线往返。\n\n我们为每种模式建立基线，在固定游戏规则和奖励的条件下逐项调整训练参数。策略选型依据实战的胜、平、负和超时记录，战局录屏则用于观察智能体怎样赢下对局、又在什么情况下失手。\n\n在 <strong>Simple</strong> 中，批大小从 <strong>1,024 降至 256</strong> 后，每千局胜场从 <strong>933 增至 977</strong>。随后将每层隐藏单元从 <strong>128 增至 256</strong>，最终策略赢下 <strong>1,000 局</strong>。在 <strong>Medium</strong> 中，固定每层 256 个隐藏单元，将学习率从 <strong>0.0003 提至 0.001</strong>，30 局筛选中的胜场从 <strong>18 增至 26</strong>。最终策略在另一组配对出生点上赢下 <strong>47/50 局</strong>，没有超时。在 <strong>Hard</strong> 中，采用 <strong>0.0035 初始学习率并线性衰减</strong>的策略赢下 <strong>92/100 局</strong>。保持相同学习率恒定时，训练奖励更高，实战赢下 <strong>89 局</strong>。三种模式的评估条件不同，因此结果用于各自模式内的策略选型。",
     },
   },
 ];

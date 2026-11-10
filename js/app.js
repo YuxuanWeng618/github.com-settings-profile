@@ -6,7 +6,7 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20261110chimera-demo";
+} from "./content.js?v=20261110ppo-other";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -131,8 +131,32 @@ function renderProjectCard(project) {
 }
 
 function renderProjects() {
-  const hardwareProjects = projects.filter((p) => p.category === "hardware");
-  const softwareProjects = projects.filter((p) => p.category === "software");
+  const projectGroups = categories.map((category) => ({
+    ...category,
+    projects: projects.filter((project) => project.category === category.id),
+  }));
+
+  const categoryButtons = projectGroups.map((category) => `
+    <button class="category-filter-btn" data-filter="${category.id}" type="button" aria-pressed="false">
+      <span class="lang-en-only">${category.labelEn}</span>
+      <span class="lang-cn-only">${category.labelCn}</span>
+      <span class="category-count">${category.projects.length}</span>
+    </button>
+  `).join("");
+
+  const projectSections = projectGroups.map((category) => `
+    <section class="project-category-section" data-category="${category.id}">
+      <div class="category-header">
+        <h2 class="category-title">
+          <span class="category-title-en">${category.labelEn}</span>
+          <span class="category-title-cn">${category.labelCn}</span>
+        </h2>
+        <span class="category-subtitle lang-en-only">${category.subtitleEn}</span>
+        <span class="category-subtitle lang-cn-only">${category.subtitleCn}</span>
+      </div>
+      <ul class="project-grid">${category.projects.map(renderProjectCard).join("")}</ul>
+    </section>
+  `).join("");
 
   return `
     <div class="projects-container">
@@ -142,41 +166,9 @@ function renderProjects() {
           <span class="lang-cn-only">全部</span>
           <span class="category-count">${projects.length}</span>
         </button>
-        <button class="category-filter-btn" data-filter="software" type="button" aria-pressed="false">
-          <span class="lang-en-only">Software</span>
-          <span class="lang-cn-only">软件类</span>
-          <span class="category-count">${softwareProjects.length}</span>
-        </button>
-        <button class="category-filter-btn" data-filter="hardware" type="button" aria-pressed="false">
-          <span class="lang-en-only">Hardware</span>
-          <span class="lang-cn-only">硬件类</span>
-          <span class="category-count">${hardwareProjects.length}</span>
-        </button>
+        ${categoryButtons}
       </nav>
-
-      <section class="project-category-section" data-category="software">
-        <div class="category-header">
-          <h2 class="category-title">
-            <span class="category-title-en">Software</span>
-            <span class="category-title-cn">软件类</span>
-          </h2>
-          <span class="category-subtitle lang-en-only">VR, Games &amp; Digital Systems</span>
-          <span class="category-subtitle lang-cn-only">虚拟现实、游戏与数字系统</span>
-        </div>
-        <ul class="project-grid">${softwareProjects.map(renderProjectCard).join("")}</ul>
-      </section>
-
-      <section class="project-category-section" data-category="hardware">
-        <div class="category-header">
-          <h2 class="category-title">
-            <span class="category-title-en">Hardware</span>
-            <span class="category-title-cn">硬件类</span>
-          </h2>
-          <span class="category-subtitle lang-en-only">Physical Computing &amp; Interactive Installations</span>
-          <span class="category-subtitle lang-cn-only">实体计算与交互装置</span>
-        </div>
-        <ul class="project-grid">${hardwareProjects.map(renderProjectCard).join("")}</ul>
-      </section>
+      ${projectSections}
     </div>
   `;
 }
