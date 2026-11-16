@@ -6,7 +6,7 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20261116reading";
+} from "./content.js?v=20261116perf";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -14,10 +14,10 @@ import {
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20260924d";
-import { initHoverZoom } from "./zoom.js?v=20260924d";
-import { renderDocs, bindDocs } from "./docs.js?v=20260924d";
-import { initCollapsibleLists } from "./responsive.js?v=20260924d";
+} from "./lang.js?v=20261116perf";
+import { initHoverZoom } from "./zoom.js?v=20261116perf";
+import { renderDocs, bindDocs } from "./docs.js?v=20261116perf";
+import { initCollapsibleLists } from "./responsive.js?v=20261116perf";
 
 function renderHeader(activePage) {
   const lang = getLang();
@@ -67,7 +67,30 @@ function renderAuthor(author) {
   return `${name}${equal}${corresponding}${note}`;
 }
 
-function renderProjectCard(project) {
+const projectCoverSizes = "(max-width: 540px) calc(100vw - 2rem), (max-width: 900px) calc((100vw - 5.5rem) / 2), (max-width: 1144px) calc((100vw - 7rem) / 3), 344px";
+
+function renderProjectCover(project, label, alt, priority) {
+  if (!project.cover) return "";
+  const thumbnail = project.coverThumbnail;
+  const image = thumbnail ? `${thumbnail}-480.webp` : project.cover;
+  const responsive = thumbnail
+    ? `srcset="${image} 480w, ${thumbnail}-960.webp 960w" sizes="${projectCoverSizes}"`
+    : "";
+  const video = project.coverVideo
+    ? `<video class="project-cover-video" data-src="${project.coverVideo}" preload="none" muted loop playsinline aria-hidden="true"></video>`
+    : "";
+  return `
+    <a class="project-thumb" href="${project.href}" aria-label="${label}">
+      <span class="project-cover-media">
+        <img class="project-image" src="${image}" ${responsive} alt="${alt}"
+          ${priority ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"'} />
+        ${video}
+      </span>
+    </a>
+  `;
+}
+
+function renderProjectCard(project, priority) {
   const lang = getLang();
   const tagsEn = formatTags(project.tagsEn);
   const tagsCn = formatTags(project.tagsCn);
@@ -97,25 +120,7 @@ function renderProjectCard(project) {
 
   return `
     <li class="project-card">
-      ${
-        project.cover
-          ? `
-            <a
-              class="project-thumb"
-              href="${project.href}"
-              aria-label="${detailLabel}"
-            >
-              <img
-                class="project-image"
-                src="${project.cover}"
-                alt="${lang === "cn" ? project.titleCn : project.titleEn}"
-                loading="lazy"
-                ${project.coverPosition ? `style="object-position: ${project.coverPosition}"` : ""}
-              />
-            </a>
-          `
-          : ""
-      }
+      ${renderProjectCover(project, detailLabel, lang === "cn" ? project.titleCn : project.titleEn, priority)}
       <div class="project-meta">
         <a class="project-title-en" href="${project.href}">${project.titleEn}</a>
         <a class="project-title-cn" href="${project.href}">${project.titleCn}</a>
@@ -144,6 +149,7 @@ function renderProjects() {
     </button>
   `).join("");
 
+  const priorityProject = projectGroups[0]?.projects.find((project) => project.cover);
   const projectSections = projectGroups.map((category) => `
     <section class="project-category-section" data-category="${category.id}">
       <div class="category-header">
@@ -154,7 +160,7 @@ function renderProjects() {
         <span class="category-subtitle lang-en-only">${category.subtitleEn}</span>
         <span class="category-subtitle lang-cn-only">${category.subtitleCn}</span>
       </div>
-      <ul class="project-grid">${category.projects.map(renderProjectCard).join("")}</ul>
+      <ul class="project-grid">${category.projects.map((project) => renderProjectCard(project, project === priorityProject)).join("")}</ul>
     </section>
   `).join("");
 
@@ -171,6 +177,53 @@ function renderProjects() {
       ${projectSections}
     </div>
   `;
+}
+
+function initProjectCoverVideos() {
+  const videos = document.querySelectorAll(".project-cover-video");
+  if (!videos.length || !window.IntersectionObserver) return;
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  for (const video of videos) {
+    const frame = video.parentElement;
+    const poster = frame.querySelector("img");
+    let visible = false;
+    let ready = false;
+
+    const syncPlayback = () => {
+      if (!ready || !visible || document.hidden || motion.matches) {
+        video.pause();
+        return;
+      }
+      if (!video.hasAttribute("src")) video.src = video.dataset.src;
+      if (video.paused) video.play().catch(() => {});
+    };
+
+    video.addEventListener("playing", () => video.classList.toggle("is-playing", !video.paused));
+    video.addEventListener("pause", () => video.classList.remove("is-playing"));
+    video.addEventListener("error", () => video.classList.remove("is-playing"));
+    document.addEventListener("visibilitychange", syncPlayback);
+    motion.addEventListener("change", syncPlayback);
+
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.intersectionRatio >= 0.2;
+      syncPlayback();
+    }, { threshold: 0.2 });
+    observer.observe(frame);
+
+    const startAfterLoad = () => {
+      const start = () => {
+        ready = true;
+        syncPlayback();
+      };
+      if (window.requestIdleCallback) window.requestIdleCallback(start, { timeout: 1200 });
+      else window.setTimeout(start, 150);
+    };
+    poster.decode().catch(() => {}).then(() => {
+      if (document.readyState === "complete") startAfterLoad();
+      else window.addEventListener("load", startAfterLoad, { once: true });
+    });
+  }
 }
 
 function bindCategoryFilters() {
@@ -373,6 +426,7 @@ function init() {
     case "projects":
       contentEl.innerHTML = renderProjects();
       bindCategoryFilters();
+      initProjectCoverVideos();
       break;
     case "publications":
       contentEl.innerHTML = renderPublications();
