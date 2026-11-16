@@ -64,7 +64,7 @@ function getTarget(el) {
 
 function resolveImage(frame) {
   if (frame.matches(FRAME_CLIPPED)) {
-    return frame.querySelector("img");
+    return frame.querySelector(".project-cover-media") ?? frame.querySelector("img");
   }
   return frame;
 }

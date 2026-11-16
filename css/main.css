@@ -224,8 +224,8 @@ main {
   margin: 0 auto;
 }
 
-/* Animate the rendered main content as one block, once per page load. */
-#page-content:not(:empty) {
+/* Leave the homepage visible as soon as its cards render. */
+:where(body:not(.projects-home)) #page-content:not(:empty) {
   animation: page-fade-in-up 1.8s ease both;
 }
 
@@ -354,8 +354,34 @@ main {
   outline-offset: 2px;
 }
 
+.project-cover-media {
+  display: block;
+  position: relative;
+}
+
+.project-cover-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.project-cover-video.is-playing {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-cover-video {
+    display: none;
+  }
+}
+
 .project-image {
   display: block;
+  height: auto;
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
@@ -363,7 +389,7 @@ main {
   transition: opacity 0.2s ease;
 }
 
-.project-thumb:hover .project-image {
+.project-thumb:hover .project-cover-media {
   opacity: 0.88;
 }
 
@@ -1579,18 +1605,18 @@ body.lightbox-open {
   /* Clipped frames magnify the image inside its existing crop.
      Scale motion is driven by js/zoom.js. Detail galleries use a restrained
      1.04 scale and damped spring. CSS only handles the no-JS fallback. */
-  .project-thumb .project-image,
+  .project-thumb .project-cover-media,
   .project-detail-figure-detail .project-detail-image {
     transform-origin: center center;
     transition: opacity 0.2s ease;
   }
 
-  html:not(.js-spring-zoom) .project-thumb .project-image,
+  html:not(.js-spring-zoom) .project-thumb .project-cover-media,
   html:not(.js-spring-zoom) .project-detail-figure-detail .project-detail-image {
     transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.2s ease;
   }
 
-  html:not(.js-spring-zoom) .project-thumb:hover .project-image {
+  html:not(.js-spring-zoom) .project-thumb:hover .project-cover-media {
     transform: scale(1.04);
   }
 
@@ -1646,7 +1672,7 @@ body.lightbox-open {
     transform: none;
   }
 
-  .project-thumb .project-image,
+  .project-thumb .project-cover-media,
   .project-detail-figure-detail .project-detail-image,
   .publication-figure,
   .project-detail-figure-top,
@@ -1654,7 +1680,7 @@ body.lightbox-open {
     transition: none;
   }
 
-  .project-thumb:hover .project-image,
+  .project-thumb:hover .project-cover-media,
   .project-detail-figure-detail:hover .project-detail-image,
   .publication-figure:hover,
   .project-detail-figure-top:hover,
