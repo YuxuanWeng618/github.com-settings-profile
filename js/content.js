@@ -1030,11 +1030,26 @@ export const about = {
     { date: "2024年12月", text: '装置项目 "AquaSense" 荣获 2025 MUSE 创意大奖体验类金奖。' },
   ],
   readingList: [
-    { title: "Ways of Being: Animals, Plants, Machines", author: "James Bridle" },
     {
-      title: "Multiagent Systems: Algorithmic, Game-Theoretic, and Logical Foundations",
-      author: "Yoav Shoham & Kevin Leyton-Brown",
+      title: "How employment is changing at Anthropic",
+      author: "Anthropic",
+      date: "2026-10",
+      href: "https://www.anthropic.com/research/employment-at-anthropic"
     },
-    { title: "The Society of Mind", author: "Marvin Minsky" },
+    {
+      title: "Harness design for long-running application development",
+      author: "Anthropic Engineering",
+      href: "https://www.anthropic.com/research/harness-design-long-running-apps"
+    },
+    {
+      title: "Effective harnesses for long-running agents",
+      author: "Anthropic Engineering",
+      href: "https://www.anthropic.com/research/effective-harnesses-for-long-running-agents"
+    },
+    {
+      title: "ForgeKernel",
+      author: "arXiv 2611.04998",
+      href: "https://arxiv.org/abs/2611.04998"
+    },
   ],
 };

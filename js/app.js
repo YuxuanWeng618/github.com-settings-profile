@@ -6,7 +6,7 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20261110ppo-other";
+} from "./content.js?v=20261116reading";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -276,7 +276,11 @@ function renderAbout() {
   const newsEn = renderNewsItems(about.newsEn, "text-en");
   const newsCn = renderNewsItems(about.newsCn, "text-cn");
   const reading = about.readingList
-    .map((book) => `<li class="reading-item"><em>${book.title}</em>, ${book.author}</li>`)
+    .map(({ title, author, date, href }) => {
+      const titleLink = `<a href="${href}" target="_blank" rel="noopener noreferrer">${title}</a>`;
+      const dateLabel = date ? ` (${date})` : "";
+      return `<li class="reading-item"><em>${titleLink}</em>, ${author}${dateLabel}</li>`;
+    })
     .join("");
   const photo = about.photo
     ? `<figure class="about-photo"><img src="${about.photo}" alt="${about.nameDisplay}" loading="lazy" /></figure>`
