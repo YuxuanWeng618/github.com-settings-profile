@@ -10,7 +10,7 @@ export const site = {
   tagline: "Designer, Researcher",
   taglineCn: "设计师, 研究员",
   email: "CQWengyuxuan@outlook.com",
-  lastUpdate: "Sep, 2026",
+  lastUpdate: "Nov, 2026",
   googleScholar:
     "https://scholar.google.com/citations?view_op=list_works&hl=zh-TW&user=yqzwOIAAAAJ",
 };

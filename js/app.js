@@ -6,7 +6,7 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20261117ppo-media";
+} from "./content.js?v=20261117-update-date";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -14,10 +14,10 @@ import {
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20261117ppo-media";
+} from "./lang.js?v=20261117-update-date";
 import { initHoverZoom } from "./zoom.js?v=20261116perf";
-import { renderDocs, bindDocs } from "./docs.js?v=20261117ppo-media";
-import { initCollapsibleLists } from "./responsive.js?v=20261117ppo-media";
+import { renderDocs, bindDocs } from "./docs.js?v=20261117-update-date";
+import { initCollapsibleLists } from "./responsive.js?v=20261117-update-date";
 
 function renderHeader(activePage) {
   const lang = getLang();
