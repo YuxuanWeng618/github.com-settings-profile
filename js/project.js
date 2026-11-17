@@ -4,7 +4,7 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20261116perf";
+} from "./content.js?v=20261117ppo-media";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -12,13 +12,13 @@ import {
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20261116perf";
+} from "./lang.js?v=20261117ppo-media";
 import { initHoverZoom } from "./zoom.js?v=20261116perf";
 import {
   initStickySidebar,
   initPhoneGalleries,
   initDetailImageZoom,
-} from "./responsive.js?v=20261116perf";
+} from "./responsive.js?v=20261117ppo-media";
 
 function renderHeader(activePage) {
   const lang = getLang();
@@ -308,20 +308,37 @@ function renderGallery(detail) {
   const parts = [];
 
   if (detail.video) {
-    const embedUrl = toVideoEmbedUrl(detail.video);
+    const customVideo = typeof detail.video === "object" ? detail.video : null;
+    const embedUrl = customVideo?.src ?? toVideoEmbedUrl(detail.video);
+    const title = customVideo?.title ?? "Project video";
+    const permissions = customVideo
+      ? "fullscreen; picture-in-picture"
+      : "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
     parts.push(`
       <figure class="project-detail-figure project-detail-video">
         <div class="video-embed">
           <iframe
             src="${embedUrl}"
-            title="Project video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            title="${title}"
+            allow="${permissions}"
             allowfullscreen
             loading="lazy"
           ></iframe>
         </div>
+        ${customVideo?.watchUrl ? `
+          <figcaption class="project-detail-demo-note">
+            <a href="${customVideo.watchUrl}" target="_blank" rel="noopener noreferrer">
+              <span class="lang-en-only">Watch on Vimeo</span>
+              <span class="lang-cn-only">在 Vimeo 观看</span>
+            </a>
+          </figcaption>
+        ` : ""}
       </figure>
     `);
+  }
+
+  if (detail.repository) {
+    parts.push(renderDemo(detail.repository));
   }
 
   if (detail.demo) {
