@@ -4,7 +4,7 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20261117-update-date";
+} from "./content.js?v=20261123-ppo-results";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -12,13 +12,13 @@ import {
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20261117-update-date";
+} from "./lang.js?v=20261123-ppo-results";
 import { initHoverZoom } from "./zoom.js?v=20261116perf";
 import {
   initStickySidebar,
   initPhoneGalleries,
   initDetailImageZoom,
-} from "./responsive.js?v=20261117-update-date";
+} from "./responsive.js?v=20261123-ppo-results";
 
 function renderHeader(activePage) {
   const lang = getLang();
