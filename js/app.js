@@ -151,8 +151,8 @@ function renderProjects() {
 
   const priorityProject = projectGroups[0]?.projects.find((project) => project.cover);
   const projectSections = projectGroups.map((category) => `
-    <section class="project-category-section" data-category="${category.id}">
-      <div class="category-header">
+    <section class="project-category-section" data-entrance-group data-category="${category.id}">
+      <div class="category-header" data-entrance-part>
         <h2 class="category-title">
           <span class="category-title-en">${category.labelEn}</span>
           <span class="category-title-cn">${category.labelCn}</span>
@@ -160,13 +160,13 @@ function renderProjects() {
         <span class="category-subtitle lang-en-only">${category.subtitleEn}</span>
         <span class="category-subtitle lang-cn-only">${category.subtitleCn}</span>
       </div>
-      <ul class="project-grid">${category.projects.map((project) => renderProjectCard(project, project === priorityProject)).join("")}</ul>
+      <ul class="project-grid" data-entrance-part>${category.projects.map((project) => renderProjectCard(project, project === priorityProject)).join("")}</ul>
     </section>
   `).join("");
 
   return `
     <div class="projects-container">
-      <nav class="category-filters" aria-label="Project categories">
+      <nav class="category-filters" data-entrance-leading aria-label="Project categories">
         <button class="category-filter-btn is-active" data-filter="all" type="button" aria-pressed="true">
           <span class="lang-en-only">All</span>
           <span class="lang-cn-only">全部</span>
@@ -179,34 +179,98 @@ function renderProjects() {
   `;
 }
 
-function initProjectEntrance(contentEl) {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+function initGroupEntrance(contentEl) {
+  document.body.dataset.groupEntrance = "";
+  const groups = [...contentEl.querySelectorAll("[data-entrance-group]")];
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (!window.IntersectionObserver || !contentEl.animate) return () => {};
 
-  function finishEntrance() {
-    document.body.classList.remove("is-page-entering");
-    document.removeEventListener("visibilitychange", handleVisibility);
-    contentEl.removeEventListener("animationend", handleAnimationEnd);
-    contentEl.removeEventListener("animationcancel", handleAnimationEnd);
+  const animations = new Set();
+  const frames = [
+    { opacity: 0, transform: "translate3d(0, 20px, 0)" },
+    { opacity: 1, transform: "translate3d(0, 0, 0)" },
+  ];
+
+  function animateElement(element, delay) {
+    const animation = element.animate(frames, {
+      duration: 700,
+      delay,
+      easing: "cubic-bezier(0.22, 0.61, 0.36, 1)",
+      fill: "backwards",
+    });
+    animations.add(animation);
+    animation.finished.catch(() => {}).finally(() => animations.delete(animation));
   }
 
-  function handleAnimationEnd(event) {
-    if (event.target === contentEl && event.animationName === "page-fade-in-up") {
-      finishEntrance();
+  function finishAnimations() {
+    for (const animation of animations) animation.finish();
+    animations.clear();
+  }
+
+  function revealVisibleGroups(initialDelay = 0) {
+    if (document.hidden || motion.matches) return;
+    let delay = initialDelay;
+    for (const group of groups) {
+      if (group.hidden || !group.classList.contains("is-group-pending")) continue;
+      const bounds = group.getBoundingClientRect();
+      if (bounds.bottom <= 0 || bounds.top >= window.innerHeight - 40) continue;
+      group.classList.remove("is-group-pending");
+      observer.unobserve(group);
+      const parts = [...group.querySelectorAll("[data-entrance-part]")]
+        .filter((part) => part.getClientRects().length);
+      parts.forEach((part, index) => animateElement(part, delay + index * 100));
+      delay += 150;
     }
   }
 
+  const observer = new IntersectionObserver(() => revealVisibleGroups(), {
+    rootMargin: "0px 0px -40px 0px",
+    threshold: 0,
+  });
+
+  function refreshGroups() {
+    finishAnimations();
+    for (const group of groups) {
+      group.classList.toggle("is-group-pending", !motion.matches && !group.hidden);
+      observer.unobserve(group);
+      if (!motion.matches && !group.hidden) observer.observe(group);
+    }
+    revealVisibleGroups();
+  }
+
+  const leading = contentEl.querySelector("[data-entrance-leading]");
+  let navigationPlayed = motion.matches || !leading;
   function handleVisibility() {
     if (document.hidden) {
-      if (document.body.classList.contains("is-page-entering")) finishEntrance();
+      finishAnimations();
       return;
     }
-    document.body.classList.add("is-page-entering");
+    let initialDelay = 0;
+    if (!navigationPlayed && !motion.matches) {
+      animateElement(leading, 0);
+      navigationPlayed = true;
+      initialDelay = 150;
+    }
+    revealVisibleGroups(initialDelay);
   }
 
-  contentEl.addEventListener("animationend", handleAnimationEnd);
-  contentEl.addEventListener("animationcancel", handleAnimationEnd);
+  for (const group of groups) {
+    if (!motion.matches) {
+      group.classList.add("is-group-pending");
+      observer.observe(group);
+    }
+  }
+  contentEl.addEventListener("focusin", (event) => {
+    const group = event.target.closest("[data-entrance-group]");
+    if (group) {
+      group.classList.remove("is-group-pending");
+      observer.unobserve(group);
+    }
+  });
+  motion.addEventListener("change", refreshGroups);
   document.addEventListener("visibilitychange", handleVisibility);
   handleVisibility();
+  return refreshGroups;
 }
 
 function initProjectCoverVideos() {
@@ -256,7 +320,7 @@ function initProjectCoverVideos() {
   }
 }
 
-function bindCategoryFilters() {
+function bindCategoryFilters(refreshEntrance) {
   const buttons = document.querySelectorAll(".category-filter-btn");
   const sections = document.querySelectorAll(".project-category-section");
   if (!buttons.length || !sections.length) return;
@@ -274,24 +338,11 @@ function bindCategoryFilters() {
 
       sections.forEach((sec) => {
         const shouldShow = filter === "all" || sec.dataset.category === filter;
-        const wasHidden = sec.hidden;
         sec.hidden = !shouldShow;
-        if (shouldShow && wasHidden) reveal(sec);
       });
+      refreshEntrance();
     });
   });
-}
-
-function reveal(el) {
-  // A hidden tab freezes the animation clock, which would hold the section at
-  // the first keyframe until the tab is looked at again.
-  if (document.hidden) return;
-
-  el.classList.remove("is-revealing");
-  // Reading offsetWidth restarts the animation when the same element reappears.
-  void el.offsetWidth;
-  el.classList.add("is-revealing");
-  el.addEventListener("animationend", () => el.classList.remove("is-revealing"), { once: true });
 }
 
 function renderVenues(venues) {
@@ -318,13 +369,13 @@ function renderPublications() {
         ? `<p class="publication-title">${pub.subtitle}</p>`
         : "";
       const figure = pub.image
-        ? `<figure class="publication-figure"><img src="${pub.image}" alt="" loading="lazy" /></figure>`
+        ? `<figure class="publication-figure" data-entrance-part><img src="${pub.image}" alt="" loading="lazy" /></figure>`
         : "";
 
       return `
-        <li class="publication-item${pub.image ? " has-figure" : ""}">
+        <li class="publication-item${pub.image ? " has-figure" : ""}" data-entrance-group>
           ${figure}
-          <div class="publication-body">
+          <div class="publication-body" data-entrance-part>
             <p class="publication-venue"><span class="venue-tag">${renderVenues(pub.venues)}</span></p>
             <h2 class="publication-title">${pub.title}</h2>
             ${subtitle}
@@ -366,14 +417,14 @@ function renderAbout() {
     })
     .join("");
   const photo = about.photo
-    ? `<figure class="about-photo"><img src="${about.photo}" alt="${about.nameDisplay}" loading="lazy" /></figure>`
+    ? `<figure class="about-photo" data-entrance-part><img src="${about.photo}" alt="${about.nameDisplay}" loading="lazy" /></figure>`
     : "";
 
   return `
     <div class="about-page">
-      <div class="about-hero">
+      <div class="about-hero" data-entrance-group>
         ${photo}
-        <div class="about-intro">
+        <div class="about-intro" data-entrance-part>
           <div class="project-detail-lang-block project-detail-lang-en">
             <p class="about-name text-en">${about.nameDisplay}</p>
             <p class="about-pronunciation text-en">(Pronunciation: ${about.pronunciation})</p>
@@ -399,32 +450,32 @@ function renderAbout() {
 
     <hr class="section-divider" />
 
-    <section class="about-news">
+    <section class="about-news" data-entrance-group>
       <div class="project-detail-lang-block project-detail-lang-en">
-        <h2 class="about-section-title text-en">📰 News</h2>
-        <ul class="news-list" id="news-list-en" data-collapse-limit="5">${newsEn}</ul>
+        <h2 class="about-section-title text-en" data-entrance-part>📰 News</h2>
+        <ul class="news-list" data-entrance-part id="news-list-en" data-collapse-limit="5">${newsEn}</ul>
       </div>
       <div class="project-detail-lang-block project-detail-lang-cn">
-        <h2 class="about-section-title text-cn">📰 最新动态</h2>
-        <ul class="news-list" id="news-list-cn" data-collapse-limit="5">${newsCn}</ul>
+        <h2 class="about-section-title text-cn" data-entrance-part>📰 最新动态</h2>
+        <ul class="news-list" data-entrance-part id="news-list-cn" data-collapse-limit="5">${newsCn}</ul>
       </div>
     </section>
 
     <hr class="section-divider" />
 
-    <section>
-      <h2 class="about-section-title lang-en-only">📖 My Recent Reading List</h2>
-      <h2 class="about-section-title lang-cn-only">📖 近期阅读</h2>
-      <ul class="reading-list" id="reading-list" data-collapse-limit="3">${reading}</ul>
+    <section data-entrance-group>
+      <h2 class="about-section-title lang-en-only" data-entrance-part>📖 My Recent Reading List</h2>
+      <h2 class="about-section-title lang-cn-only" data-entrance-part>📖 近期阅读</h2>
+      <ul class="reading-list" data-entrance-part id="reading-list" data-collapse-limit="3">${reading}</ul>
     </section>
 
     ${
       about.extraSection?.title
         ? `
     <hr class="section-divider" />
-    <section>
-      <h2 class="about-section-title">${about.extraSection.title}</h2>
-      ${about.extraSection.content ? `<p>${about.extraSection.content}</p>` : ""}
+    <section data-entrance-group>
+      <h2 class="about-section-title" data-entrance-part>${about.extraSection.title}</h2>
+      ${about.extraSection.content ? `<p data-entrance-part>${about.extraSection.content}</p>` : ""}
     </section>
     `
         : ""
@@ -455,16 +506,18 @@ function init() {
   switch (page) {
     case "projects":
       contentEl.innerHTML = renderProjects();
-      initProjectEntrance(contentEl);
-      bindCategoryFilters();
+      const refreshEntrance = initGroupEntrance(contentEl);
+      bindCategoryFilters(refreshEntrance);
       initProjectCoverVideos();
       break;
     case "publications":
       contentEl.innerHTML = renderPublications();
+      initGroupEntrance(contentEl);
       break;
     case "about":
       contentEl.innerHTML = renderAbout();
       initCollapsibleLists();
+      initGroupEntrance(contentEl);
       break;
     case "docs":
       contentEl.innerHTML = renderDocs();

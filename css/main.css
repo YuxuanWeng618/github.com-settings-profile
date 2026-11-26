@@ -224,9 +224,19 @@ main {
   margin: 0 auto;
 }
 
-/* The homepage starts its entrance after rendering in a visible tab. */
-:where(body:not(.projects-home), body.projects-home.is-page-entering) #page-content:not(:empty) {
+/* Project groups handle their own entrance independently of the page fade. */
+:where(body:not(.projects-home):not([data-group-entrance])) #page-content:not(:empty) {
   animation: page-fade-in-up 1.8s ease both;
+}
+
+[data-entrance-group].is-group-pending [data-entrance-part] {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-entrance-group].is-group-pending [data-entrance-part] {
+    opacity: 1;
+  }
 }
 
 @keyframes page-fade-in-up {
