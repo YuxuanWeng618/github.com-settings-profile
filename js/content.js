@@ -154,7 +154,7 @@ export const projects = [
     slug: "everyday-fairness",
     titleEn: "Everyday Fairness",
     titleCn: "日常公平：儿童冲突中的多方视角",
-    category: "software",
+    category: "other-works",
     cover: "assets/projects/everyday-fairness/cover-home-v3.webp",
     coverThumbnail: "assets/projects/card-thumbnails/everyday-fairness",
     images: ["assets/projects/everyday-fairness/cover-home-v3.webp"],
