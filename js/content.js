@@ -1016,6 +1016,10 @@ export const about = {
   ],
   newsEn: [
     {
+      date: "Nov 2026",
+      text: "Joined <a href=\"https://modelbest.cn/baike\" target=\"_blank\" rel=\"noopener noreferrer\">ModelBest</a> as an Agentic Engineering Intern, responsible for developing AutoSkill.",
+    },
+    {
       date: "Sep 2026",
       text: "I will present my work at the ISWC 2026 Design Exhibition during ACM UbiComp/ISWC 2026 in Shanghai, China, this October.",
     },
@@ -1045,6 +1049,10 @@ export const about = {
     },
   ],
   newsCn: [
+    {
+      date: "2026年11月",
+      text: "加入<a href=\"https://modelbest.cn/baike\" target=\"_blank\" rel=\"noopener noreferrer\">面壁智能（ModelBest）</a>，担任 Agentic Engineering 实习生，负责 AutoSkill 项目的开发。",
+    },
     { date: "2026年9月", text: "将于今年 10 月在中国上海举办的 ACM UbiComp/ISWC 2026 期间，参加 ISWC 2026 设计展览并展出作品。" },
     { date: "2026年8月", text: "将在新加坡南洋理工大学（NTU）攻读游戏设计与艺术技术理学硕士（GDAT）！" },
     { date: "2026年7月", text: "获邀在 HCII 2026 国际会议上展示关于 VR 皮影戏的海报。" },
