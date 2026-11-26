@@ -6,7 +6,7 @@ import {
   publications,
   about,
   categories,
-} from "./content.js?v=20261127-fairness-category";
+} from "./content.js?v=20261127-modelbest-news";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -14,10 +14,10 @@ import {
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20261127-fairness-category";
+} from "./lang.js?v=20261127-modelbest-news";
 import { initHoverZoom } from "./zoom.js?v=20261116perf";
-import { renderDocs, bindDocs } from "./docs.js?v=20261127-fairness-category";
-import { initCollapsibleLists } from "./responsive.js?v=20261127-fairness-category";
+import { renderDocs, bindDocs } from "./docs.js?v=20261127-modelbest-news";
+import { initCollapsibleLists } from "./responsive.js?v=20261127-modelbest-news";
 
 function renderHeader(activePage) {
   const lang = getLang();

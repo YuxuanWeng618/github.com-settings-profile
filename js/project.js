@@ -4,7 +4,7 @@ import {
   nav,
   getProjectBySlug,
   getProjectNeighbors,
-} from "./content.js?v=20261127-fairness-category";
+} from "./content.js?v=20261127-modelbest-news";
 import { renderThemeToggle, bindThemeToggle, initTheme } from "./theme.js?v=20260924d";
 import {
   getLang,
@@ -12,13 +12,13 @@ import {
   bindLangToggle,
   initLang,
   updateHeaderContent,
-} from "./lang.js?v=20261127-fairness-category";
+} from "./lang.js?v=20261127-modelbest-news";
 import { initHoverZoom } from "./zoom.js?v=20261116perf";
 import {
   initStickySidebar,
   initPhoneGalleries,
   initDetailImageZoom,
-} from "./responsive.js?v=20261127-fairness-category";
+} from "./responsive.js?v=20261127-modelbest-news";
 
 function renderHeader(activePage) {
   const lang = getLang();
