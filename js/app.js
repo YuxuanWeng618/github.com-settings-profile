@@ -179,6 +179,36 @@ function renderProjects() {
   `;
 }
 
+function initProjectEntrance(contentEl) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  function finishEntrance() {
+    document.body.classList.remove("is-page-entering");
+    document.removeEventListener("visibilitychange", handleVisibility);
+    contentEl.removeEventListener("animationend", handleAnimationEnd);
+    contentEl.removeEventListener("animationcancel", handleAnimationEnd);
+  }
+
+  function handleAnimationEnd(event) {
+    if (event.target === contentEl && event.animationName === "page-fade-in-up") {
+      finishEntrance();
+    }
+  }
+
+  function handleVisibility() {
+    if (document.hidden) {
+      if (document.body.classList.contains("is-page-entering")) finishEntrance();
+      return;
+    }
+    document.body.classList.add("is-page-entering");
+  }
+
+  contentEl.addEventListener("animationend", handleAnimationEnd);
+  contentEl.addEventListener("animationcancel", handleAnimationEnd);
+  document.addEventListener("visibilitychange", handleVisibility);
+  handleVisibility();
+}
+
 function initProjectCoverVideos() {
   const videos = document.querySelectorAll(".project-cover-video");
   if (!videos.length || !window.IntersectionObserver) return;
@@ -425,6 +455,7 @@ function init() {
   switch (page) {
     case "projects":
       contentEl.innerHTML = renderProjects();
+      initProjectEntrance(contentEl);
       bindCategoryFilters();
       initProjectCoverVideos();
       break;

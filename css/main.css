@@ -224,8 +224,8 @@ main {
   margin: 0 auto;
 }
 
-/* Leave the homepage visible as soon as its cards render. */
-:where(body:not(.projects-home)) #page-content:not(:empty) {
+/* The homepage starts its entrance after rendering in a visible tab. */
+:where(body:not(.projects-home), body.projects-home.is-page-entering) #page-content:not(:empty) {
   animation: page-fade-in-up 1.8s ease both;
 }
 
